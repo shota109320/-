@@ -3,152 +3,1011 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>詳細ページ</title>
+<title>みうらや誠麺 お品書き</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500&family=Yuji+Boku&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --wood-dark:#3b2415;
-    --wood-mid:#6b4226;
-    --counter:#a9702f;
-    --counter-dark:#8a5820;
-    --tag-cream:#efe3c4;
-    --seal-red:#a63a2e;
-    --ink:#2b2018;
-    --washi:#f7f1e2;
-    --wall:#fbf7ee;
+  :root {
+    --wood-dark: #3b2415;
+    --wood-mid: #6b4226;
+    --wood-light: #a8754b;
+    --counter: #a9702f;
+    --counter-dark: #8a5820;
+    --tag-cream: #efe3c4;
+    --paper: #f7f0df;
+    --paper-deep: #eadbb2;
+    --seal-red: #a63a2e;
+    --seal-red-deep: #7f241d;
+    --ink: #2b2018;
+    --muted: #5a4739;
+    --black: #111111;
+    --white: #fffdf8;
+    --shadow: rgba(27, 17, 13, 0.18);
   }
-  *{ box-sizing:border-box; }
-  body{
-    margin:0;
-    background:#1c1109;
-    font-family:"Noto Sans JP", sans-serif;
-    color:var(--ink);
-    min-height:100vh;
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
   }
-  .page{
-    max-width:900px;
-    margin:0 auto;
-    background:var(--wall);
-    min-height:100vh;
-    box-shadow:0 0 50px rgba(0,0,0,0.6);
+
+  body {
+    margin: 0;
+    background: #130d0a;
+    color: var(--ink);
+    font-family: "Noto Sans JP", sans-serif;
+    min-height: 100vh;
   }
-  .header{
-    background:linear-gradient(#7d2d29, var(--seal-red));
-    border-bottom:4px solid #5c1f18;
-    padding:22px 20px 18px;
-    text-align:center;
-    color:#f9ebc1;
+
+  img {
+    max-width: 100%;
+    display: block;
   }
-  .header h1{
-    font-family:"Yuji Boku","Shippori Mincho",serif;
-    font-weight:400;
-    margin:0;
-    font-size:clamp(28px, 4vw, 42px);
-    letter-spacing:0.08em;
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
-  .content{
-    padding:30px 24px 60px;
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.02)),
+      repeating-linear-gradient(
+        90deg,
+        #f6f0e3 0,
+        #f6f0e3 18px,
+        #f1ead9 18px,
+        #f1ead9 36px
+      );
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    position: relative;
+    overflow-x: hidden;
   }
-  .card{
-    background:#fffdf9;
-    border:3px solid #d7c79b;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-    padding:28px 22px;
+
+  .page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(75,42,20,0.04), rgba(75,42,20,0.04)),
+      repeating-linear-gradient(
+        0deg,
+        rgba(58,38,25,0.02),
+        rgba(58,38,25,0.02) 2px,
+        transparent 2px,
+        transparent 6px
+      );
+    pointer-events: none;
   }
-  .eyebrow{
-    display:inline-block;
-    padding:6px 10px;
-    background:var(--seal-red);
-    color:#fff;
-    font-weight:700;
-    font-size:12px;
-    letter-spacing:0.08em;
-    border-radius:999px;
+
+  .page > * {
+    position: relative;
+    z-index: 1;
   }
-  h2{
-    font-family:"Shippori Mincho",serif;
-    margin:16px 0 12px;
-    font-size:clamp(24px, 3vw, 34px);
-    color:var(--wood-dark);
+
+  .topbar {
+    background: linear-gradient(180deg, #7d2c27, var(--seal-red));
+    border-bottom: 4px solid #5a1e1a;
+    padding: 26px 24px 16px;
+    text-align: center;
   }
-  p, li{
-    font-size:15px;
-    line-height:1.9;
-    color:#4f402f;
+
+  .topbar h1 {
+    margin: 0;
+    color: #f7ebc6;
+    font-family: "Yuji Boku", "Shippori Mincho", serif;
+    font-size: clamp(2.3rem, 4vw, 4rem);
+    letter-spacing: 0.12em;
+    font-weight: 400;
+    text-shadow: 0 2px 0 rgba(29, 10, 6, 0.45);
   }
-  ul{
-    margin:12px 0 0;
-    padding-left:1.2rem;
+
+  .subtitle {
+    margin: 10px auto 0;
+    font-size: 0.98rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 245, 216, 0.9);
+    font-weight: 500;
   }
-  .back{
-    display:inline-block;
-    margin-top:22px;
-    background:var(--wood-mid);
-    color:#fff;
-    text-decoration:none;
-    padding:10px 18px;
-    border-radius:999px;
-    font-weight:700;
+
+  .content {
+    padding: 28px 18px 80px;
+  }
+
+  .section {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    background: rgba(255, 250, 240, 0.8);
+    border: 3px solid rgba(94, 58, 36, 0.7);
+    border-radius: 18px 18px 10px 10px;
+    box-shadow: 0 10px 26px rgba(22, 12, 8, 0.12);
+    overflow: hidden;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 22px 14px;
+    background: linear-gradient(180deg, #efd9ad, #dcc389);
+    border-bottom: 3px solid rgba(72, 57, 36, 0.7);
+  }
+
+  .section-head h2 {
+    margin: 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
+    color: var(--wood-dark);
+    letter-spacing: 0.06em;
+  }
+
+  .section-head .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 10px;
+    background: var(--seal-red);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    min-width: 80px;
+  }
+
+  .recommend-wrap {
+    padding: 22px;
+  }
+
+  .recommend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .recommend-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.66), rgba(246,235,206,0.78));
+    border: 2px solid rgba(115, 80, 47, 0.7);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(35,22,16,0.08);
+  }
+
+  .recommend-card .thumb {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #dbd2c6;
+  }
+
+  .recommend-card .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .recommend-card .body {
+    padding: 14px 14px 18px;
+  }
+
+  .label {
+    display: inline-block;
+    background: linear-gradient(180deg, #c63a2d, #8d281f);
+    color: #fff;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    padding: 5px 8px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .recommend-card h3 {
+    margin: 0 0 8px;
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    color: var(--wood-dark);
+  }
+
+  .price {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--seal-red);
+    margin-bottom: 8px;
+  }
+
+  .recommend-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .category-nav-wrap {
+    padding: 0 22px 20px;
+  }
+
+  .category-nav {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+    -ms-overflow-style: none;
+  }
+
+  .category-nav::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .category-nav::-webkit-scrollbar-thumb {
+    background: rgba(118, 78, 52, 0.4);
+    border-radius: 999px;
+  }
+
+  .category-nav a {
+    flex: 0 0 auto;
+    background: linear-gradient(180deg, #f7f3e4, #ead7a4);
+    border: 2px solid rgba(107, 66, 38, 0.7);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--wood-dark);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+
+  .category-nav a:hover {
+    background: linear-gradient(180deg, #fffaf1, #f1dca7);
+  }
+
+  .menu-section {
+    padding: 0 22px 28px;
+  }
+
+  .category-block {
+    margin-top: 18px;
+    background: rgba(255,255,255,0.18);
+    border: 2px solid rgba(92, 58, 30, 0.35);
+    border-radius: 16px;
+    padding: 18px 16px 0;
+  }
+
+  .category-title {
+    margin: 0 0 14px;
+    font-family: "Shippori Mincho", serif;
+    color: var(--seal-red-deep);
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    letter-spacing: 0.08em;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(140, 89, 53, 0.38);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .menu-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(243,230,198,0.7));
+    border: 2px solid rgba(114, 81, 48, 0.7);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(22,16,12,0.08);
+  }
+
+  .menu-card .image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #d8d2c9;
+  }
+
+  .menu-card .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .menu-card .info {
+    padding: 14px 14px 16px;
+  }
+
+  .menu-card.no-image-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.64), rgba(238,226,192,0.7));
+    border-style: dashed;
+  }
+
+  .menu-card.no-image-card .info {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .menu-card.no-image-card .info::before {
+    content: "写真準備中";
+    display: inline-block;
+    margin: 0 0 10px;
+    align-self: flex-start;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    background: rgba(166, 58, 46, 0.12);
+    color: var(--seal-red);
+    border: 1px solid rgba(166, 58, 46, 0.24);
+    padding: 4px 8px;
+    border-radius: 999px;
+  }
+
+  .menu-card h3 {
+    margin: 0 0 6px;
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    color: var(--wood-dark);
+  }
+
+  .menu-card .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .menu-card .price {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .menu-card .note {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.89rem;
+    line-height: 1.7;
+  }
+
+  .menu-card .no-price {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .seasonal-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(243,230,198,0.8));
+    border: 3px solid rgba(166, 58, 46, 0.8);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(30, 18, 14, 0.12);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .seasonal-card .thumb {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #d8d2c9;
+  }
+
+  .seasonal-card .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .seasonal-card .body {
+    padding: 18px 18px 20px;
+  }
+
+  .seasonal-badge {
+    display: inline-block;
+    background: linear-gradient(180deg, #c63a2d, #8d281f);
+    color: #fff;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .seasonal-card h3 {
+    margin: 0 0 8px;
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(1.3rem, 2vw, 1.9rem);
+    color: var(--wood-dark);
+  }
+
+  .seasonal-card .seasonal-price {
+    margin: 0 0 10px;
+    color: var(--seal-red);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .seasonal-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .sheet-section {
+    padding: 0 22px 24px;
+  }
+
+  .sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .sheet-item {
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(242,232,202,0.76));
+    border: 2px solid rgba(104, 60, 40, 0.68);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    box-shadow: 0 8px 18px rgba(22,16,12,0.06);
+  }
+
+  .sheet-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(22,16,12,0.12);
+  }
+
+  .sheet-item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .topping-wrap {
+    padding: 0 22px 30px;
+  }
+
+  .topping-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .topping-card {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.36), rgba(238,212,179,0.3)),
+      repeating-linear-gradient(0deg, rgba(120,82,47,0.02), rgba(120,82,47,0.02) 2px, transparent 2px, transparent 6px);
+    border: 2px solid rgba(113, 74, 42, 0.6);
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+
+  .topping-card strong {
+    display: block;
+    font-size: 0.96rem;
+    color: var(--wood-dark);
+    margin-bottom: 2px;
+  }
+
+  .topping-card span {
+    color: var(--seal-red);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .back-bar {
+    padding: 0 22px 40px;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #783e2e, #5d271f);
+    color: #fbecc8;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    padding: 14px 24px;
+    box-shadow: 0 10px 20px rgba(35, 18, 13, 0.18);
+    border: 2px solid rgba(255,255,255,0.18);
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: 28px;
+  }
+
+  .lightbox.show {
+    display: flex;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: min(90vw, 980px);
+    max-height: 90vh;
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-content img {
+    max-width: min(90vw, 980px);
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    background: rgba(0,0,0,0.12);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  @media (max-width: 880px) {
+    .recommend-grid,
+    .menu-grid,
+    .topping-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .content {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .section-head {
+      padding: 14px 16px 12px;
+      align-items: flex-start;
+    }
+
+    .section-head h2 {
+      font-size: 1.45rem;
+    }
+
+    .recommend-wrap,
+    .category-nav-wrap,
+    .menu-section,
+    .sheet-section,
+    .topping-wrap,
+    .back-bar {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    .recommend-grid,
+    .menu-grid,
+    .sheet-grid,
+    .topping-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sheet-grid {
+      gap: 14px;
+    }
+
+    .topbar {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .subtitle {
+      letter-spacing: 0.1em;
+      font-size: 0.82rem;
+    }
+
+    .category-nav a {
+      padding: 9px 12px;
+      font-size: 0.82rem;
+    }
   }
 </style>
 </head>
 <body>
   <div class="page">
-    <div class="header">
-      <h1 id="pageTitle">詳細</h1>
-    </div>
+    <header class="topbar">
+      <h1>お品書き</h1>
+      <div class="subtitle">みうらや誠麺の一杯</div>
+    </header>
 
     <main class="content">
-      <section class="card" id="contentBox">
+      <section class="section" id="recommend">
+        <div class="section-head">
+          <h2>おすすめ</h2>
+          <span class="tag">人気</span>
+        </div>
+
+        <div class="recommend-wrap">
+          <div class="recommend-grid">
+            <article class="recommend-card">
+              <div class="thumb">
+                <img src="static/images/menu/66610_0.jpg" alt="竹岡式らーめん">
+              </div>
+              <div class="body">
+                <div class="label">おすすめ</div>
+                <h3>竹岡式らーめん</h3>
+                <div class="price">価格：店頭確認</div>
+                <p>濃厚な醤油スープと、ほどよい麺の食感が魅力の定番一杯です。</p>
+              </div>
+            </article>
+
+            <article class="recommend-card">
+              <div class="thumb">
+                <img src="static/images/menu/66611_0.jpg" alt="背脂入り竹岡式ピリ辛ねぎらーめん">
+              </div>
+              <div class="body">
+                <div class="label">おすすめ</div>
+                <h3>背脂入り竹岡式ピリ辛ねぎらーめん</h3>
+                <div class="price">価格：店頭確認</div>
+                <p>白髪ねぎとピリ辛ねぎがたっぷりの、辛味と香りが際立つ一杯です。</p>
+              </div>
+            </article>
+
+            <article class="recommend-card">
+              <div class="thumb">
+                <img src="static/images/menu/66612_0.jpg" alt="背脂入り竹岡式チャーシューめん">
+              </div>
+              <div class="body">
+                <div class="label">おすすめ</div>
+                <h3>背脂入り竹岡式チャーシューめん</h3>
+                <div class="price">価格：店頭確認</div>
+                <p>厚めのチャーシューと背脂で、コク深い味わいが楽しめます。</p>
+              </div>
+            </article>
+
+            <article class="recommend-card">
+              <div class="thumb">
+                <img src="static/images/menu/66613_0.jpg" alt="家系らーめん">
+              </div>
+              <div class="body">
+                <div class="label">おすすめ</div>
+                <h3>家系らーめん</h3>
+                <div class="price">価格：店頭確認</div>
+                <p>濃厚なスープと、しっかりした満足感が魅力のラーメンです。</p>
+              </div>
+            </article>
+
+            <article class="recommend-card">
+              <div class="thumb">
+                <img src="static/images/menu/66614_0.jpg" alt="背脂入り味噌らーめん">
+              </div>
+              <div class="body">
+                <div class="label">おすすめ</div>
+                <h3>背脂入り味噌らーめん</h3>
+                <div class="price">価格：店頭確認</div>
+                <p>オレンジ系の味噌スープと、もやし・わかめ・メンマの相性が良い一杯です。</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
       </section>
-      <a class="back" href="index.html">← トップに戻る</a>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>カテゴリ</h2>
+          <span class="tag">一覧</span>
+        </div>
+
+        <div class="category-nav-wrap">
+          <nav class="category-nav" aria-label="メニューカテゴリ">
+            <a href="#category-takokashi">竹岡式</a>
+            <a href="#category-shoyu">味噌・醤油</a>
+            <a href="#category-tonkotsu">その他</a>
+            <a href="#category-set">サイドメニュー・トッピング</a>
+            <a href="#category-seasonal">期間限定</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="section menu-section">
+        <div id="category-takokashi" class="category-block">
+          <h3 class="category-title">竹岡式</h3>
+          <div class="menu-grid">
+            <article class="menu-card">
+              <div class="image">
+                <img src="static/images/menu/66610_0.jpg" alt="竹岡式らーめん" style="object-position:center 55%;">
+              </div>
+              <div class="info">
+                <h3>竹岡式らーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">濃厚な醤油スープと、ほどよい麺の食感が魅力の定番一杯。</p>
+              </div>
+            </article>
+
+            <article class="menu-card">
+              <div class="image">
+                <img src="static/images/menu/66611_0.jpg" alt="背脂入り竹岡式ピリ辛ねぎらーめん" style="object-position:center 55%;">
+              </div>
+              <div class="info">
+                <h3>背脂入り竹岡式ピリ辛ねぎらーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">白髪ねぎとピリ辛ねぎがたっぷりの、辛味と香りが際立つ一杯。</p>
+              </div>
+            </article>
+
+            <article class="menu-card">
+              <div class="image">
+                <img src="static/images/menu/66612_0.jpg" alt="背脂入り竹岡式チャーシューめん" style="object-position:center 50%;">
+              </div>
+              <div class="info">
+                <h3>背脂入り竹岡式チャーシューめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">厚めのチャーシューと背脂で、コク深い味わいが楽しめます。</p>
+              </div>
+            </article>
+
+            <article class="menu-card">
+              <div class="image">
+                <img src="static/images/menu/66613_0.jpg" alt="家系らーめん" style="object-position:center 57%;">
+              </div>
+              <div class="info">
+                <h3>家系らーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">濃厚なスープと、しっかりした満足感が魅力のラーメンです。</p>
+              </div>
+            </article>
+
+            <article class="menu-card">
+              <div class="image">
+                <img src="static/images/menu/66614_0.jpg" alt="背脂入り味噌らーめん" style="object-position:center 52%;">
+              </div>
+              <div class="info">
+                <h3>背脂入り味噌らーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">オレンジ系の味噌スープに、もやし・わかめ・メンマが乗る定番の味噌ラーメン。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div id="category-shoyu" class="category-block">
+          <h3 class="category-title">味噌・醤油</h3>
+          <div class="menu-grid">
+            <article class="menu-card">
+              <div class="image">
+                <img src="static/images/menu/66614_0.jpg" alt="背脂入り味噌らーめん" style="object-position:center 52%;">
+              </div>
+              <div class="info">
+                <h3>背脂入り味噌らーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">オレンジ系の味噌スープに、もやし・わかめ・メンマが乗る定番の味噌ラーメン。</p>
+              </div>
+            </article>
+
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>味噌らーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">濃厚な味噌の香りを持ちつつ、全体の余韻がやさしく続きます。</p>
+              </div>
+            </article>
+
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>こってり中華そば</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">濃いめのスープと、やや太めの麺で食べごたえのある一杯です。</p>
+              </div>
+            </article>
+
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>昭和の中華そば</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">昔ながらの懐かしさと、現代の濃厚さを兼ね備えます。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div id="category-tonkotsu" class="category-block">
+          <h3 class="category-title">その他</h3>
+          <div class="menu-grid">
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>スタミナらーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">満足感が高く、ガッツリ系の食べ応えを求める方に向いた一杯です。</p>
+              </div>
+            </article>
+
+            <article class="menu-card">
+              <div class="image">
+                <img src="static/images/menu/66613_0.jpg" alt="家系らーめん" style="object-position:center 57%;">
+              </div>
+              <div class="info">
+                <h3>家系らーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">濃厚な出汁の中でも、比較的軽やかな後味が特徴です。</p>
+              </div>
+            </article>
+
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>極太濃厚魚介つけ麺</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">麺の食感と魚介の深い風味を楽しめる一杯です。</p>
+              </div>
+            </article>
+
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>お子様らーめん</h3>
+                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
+                <p class="note">やさしい味わいで、小さなお子様にも安心して楽しめます。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div id="category-set" class="category-block">
+          <h3 class="category-title">サイドメニュー・トッピング</h3>
+          <div class="menu-grid">
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>麺大盛</h3>
+                <div class="meta"><span class="no-price">+120円</span></div>
+                <p class="note">麺を一段増量して、満足感をアップできます。</p>
+              </div>
+            </article>
+
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>チャーシュー</h3>
+                <div class="meta"><span class="no-price">+120円</span></div>
+                <p class="note">うま味のあるチャーシューを追加できます。</p>
+              </div>
+            </article>
+
+            <article class="menu-card no-image-card">
+              <div class="info">
+                <h3>煮玉子</h3>
+                <div class="meta"><span class="no-price">+120円</span></div>
+                <p class="note">トロリとした玉子をプラスできます。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="期間限定メニュー">
+        <div class="section-head">
+          <h2>期間限定</h2>
+          <span class="tag">夏季限定</span>
+        </div>
+
+        <div class="recommend-wrap">
+          <article class="seasonal-card">
+            <div class="thumb">
+              <img src="static/images/menu/66615_0.jpg" alt="冷やし担々麺">
+            </div>
+            <div class="body">
+              <div class="seasonal-badge">期間限定</div>
+              <h3>冷やし担々麺</h3>
+              <p class="seasonal-price">価格は店頭にてご確認ください</p>
+              <p>夏季限定の冷やし担々麺。さっぱりとした食感と、担々の深い香りが特徴です。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section sheet-section">
+        <div class="section-head">
+          <h2>店頭メニュー表</h2>
+          <span class="tag">表</span>
+        </div>
+
+        <div class="recommend-wrap">
+          <div class="sheet-grid">
+            <div class="sheet-item" data-image="static/images/menu/S__50241541_0.jpg">
+              <img src="static/images/menu/S__50241541_0.jpg" alt="店頭メニュー表1">
+            </div>
+            <div class="sheet-item" data-image="static/images/menu/S__50241542_0.jpg">
+              <img src="static/images/menu/S__50241542_0.jpg" alt="店頭メニュー表2">
+            </div>
+            <div class="sheet-item" data-image="static/images/menu/S__50241543_0.jpg">
+              <img src="static/images/menu/S__50241543_0.jpg" alt="店頭メニュー表3">
+            </div>
+            <div class="sheet-item" data-image="static/images/menu/S__50241544_0.jpg">
+              <img src="static/images/menu/S__50241544_0.jpg" alt="店頭メニュー表4">
+            </div>
+            <div class="sheet-item" data-image="static/images/menu/S__50241545_0.jpg">
+              <img src="static/images/menu/S__50241545_0.jpg" alt="店頭メニュー表5">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section topping-wrap">
+        <div class="section-head">
+          <h2>トッピング</h2>
+          <span class="tag">追加</span>
+        </div>
+
+        <div class="recommend-wrap">
+          <div class="topping-grid">
+            <div class="topping-card"><strong>麺大盛</strong><span>+120円</span></div>
+            <div class="topping-card"><strong>チャーシュー</strong><span>+120円</span></div>
+            <div class="topping-card"><strong>煮玉子</strong><span>+120円</span></div>
+            <div class="topping-card"><strong>のり</strong><span>+120円</span></div>
+            <div class="topping-card"><strong>メンマ</strong><span>+120円</span></div>
+            <div class="topping-card"><strong>コーン</strong><span>+120円</span></div>
+            <div class="topping-card"><strong>バター</strong><span>+120円</span></div>
+            <div class="topping-card"><strong>わかめ</strong><span>+120円</span></div>
+            <div class="topping-card"><strong>ピリ辛ねぎ</strong><span>+160円</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="back-bar">
+        <a class="back-link" href="index.html">トップへ戻る</a>
+      </div>
     </main>
   </div>
 
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" type="button" aria-label="閉じる">×</button>
+      <img id="lightboxImage" src="" alt="メニュー画像を拡大表示">
+    </div>
+  </div>
+
   <script>
-    const pageData = {
-      commitment: {
-        title: '麺へのこだわり',
-        label: 'こだわり',
-        body: '<p>近隣の高校生にも届く、やさしい一杯を目指して。自家製麺は毎朝仕込み、その日のうちに使い切ります。</p><p>醤油の香りを活かしつつ、深みのあるスープに仕上げています。毎日少量ずつ手打ちし、見た目にもやさしい柔らかな食感を大切にしています。</p>'
-      },
-      menu: {
-        title: 'メニュー',
-        label: 'メニュー',
-        body: '<p>看板の醤油ラーメンから季節限定まで。特製醤油らーめん ￥880、味噌らーめん ￥900。</p><ul><li>特製醤油らーめん：香ばしい鶏ガラと熟成醤油の余韻</li><li>味噌らーめん：コクと甘みのバランスが良い一杯</li><li>追加トッピング：チャーシュー、ネギ、卵など</li></ul>'
-      },
-      shop: {
-        title: 'お店の情報',
-        label: 'お店の情報',
-        body: '<p>千葉県某所、高校の目の前。放課後にふらっと寄れる距離です。</p><p>営業時間 11:00〜21:00、定休日は毎週火曜。店内は明るく落ち着いた雰囲気で、学生から社会人まで幅広くご利用いただいています。</p>'
-      },
-      coupon: {
-        title: 'クーポン',
-        label: 'クーポン',
-        body: '<p>LINE・アプリ会員限定クーポンをご用意。トッピング無料や割引特典を随時配信しています。</p><p>友人同士での来店や、定期的な再来店でさらにお得に。毎週のキャンペーンもご覧ください。</p>'
-      },
-      rank: {
-        title: 'ランク機能',
-        label: 'ランク機能',
-        body: '<p>来店・注文に応じてランクアップ。ランクが上がるほど特典やクーポンの内容がグレードアップします。</p><p>初回入店でスタートし、一定回数の来店や購入で特別なサービスを受けられます。毎回の一杯が、ちょっと特別な体験になります。</p>'
-      },
-      access: {
-        title: 'アクセス',
-        label: 'アクセス',
-        body: '<p>最寄り駅から徒歩8分、高校の正門を出てすぐ左手です。駐輪スペースあり。</p><p>放課後や夕方の通り道からも見つけやすく、気軽に立ち寄れるロケーションです。近隣の方に安心してご利用いただけます。</p>'
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const closeButton = document.querySelector('.lightbox-close');
+
+    document.querySelectorAll('.sheet-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const src = item.dataset.image;
+        lightboxImage.src = src;
+        lightbox.classList.add('show');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('show');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+    }
+
+    closeButton.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('show')) {
+        closeLightbox();
       }
-    };
-
-    const params = new URLSearchParams(window.location.search);
-    const view = params.get('view') || 'commitment';
-    const data = pageData[view] || pageData.commitment;
-
-    document.getElementById('pageTitle').textContent = data.title;
-    const box = document.getElementById('contentBox');
-    box.innerHTML = '<div class="eyebrow">' + data.label + '</div><h2>' + data.title + '</h2>' + data.body;
+    });
   </script>
 </body>
 </html>
