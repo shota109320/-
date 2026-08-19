@@ -194,11 +194,8 @@
     pointer-events:none;
   }
   .tag:hover{ transform:rotate(-2deg) translateY(-4px); box-shadow:3px 10px 16px rgba(0,0,0,0.45); }
-  .tag.active{ background:linear-gradient(var(--seal-red), #7e2a20); border-color:#5c1f18; }
-  .tag.active .tag-text{ color:var(--washi); }
-  .tag.active::after{ background:var(--tag-cream); }
   @keyframes sway{ 0%,100%{transform:rotate(-1.2deg);} 50%{transform:rotate(1.2deg);} }
-  .tag:hover, .tag.active{ animation-play-state:paused; }
+  .tag:hover{ animation-play-state:paused; }
   @keyframes wiggle{
     0%{ transform:rotate(0deg); }
     20%{ transform:rotate(-8deg); }
@@ -242,9 +239,6 @@
     color:#4a2f10;
     text-shadow:0 1px 0 rgba(255,255,255,0.25);
   }
-  .tag.wood.active{ background:linear-gradient(var(--seal-red), #7e2a20); border-color:#5c1f18; }
-  .tag.wood.active .tag-text{ color:var(--washi); }
-  .tag.wood.active .hole{ background:radial-gradient(circle at 35% 35%, #5c1f18, #2a0d0a 70%); }
 
   /* ---- illustrated counter along the bottom of the wall ---- */
   .counter-illust{
@@ -263,26 +257,6 @@
     box-shadow:0 6px 14px rgba(0,0,0,0.4);
   }
 
-  .stage{ max-width:720px; margin:0 auto; padding:0 24px 40px; }
-  .panel-frame{
-    position:relative;overflow:hidden;
-    border:8px solid var(--wood-dark);border-radius:0 0 6px 6px;
-    box-shadow:0 10px 26px rgba(0,0,0,0.4);
-    min-height:230px;background:var(--washi);
-    margin-top:16px;
-  }
-  .panel{
-    position:absolute;inset:0;padding:30px 28px;
-    opacity:0;transform:translateX(30px);
-    transition:transform 0.35s cubic-bezier(.2,.8,.2,1), opacity 0.35s ease;
-    pointer-events:none;
-  }
-  .panel.show{ opacity:1;transform:translateX(0);pointer-events:auto;position:relative; }
-  .panel h2{
-    font-family:"Shippori Mincho",serif;font-size:20px;margin:0 0 6px;
-    color:var(--seal-red);border-bottom:2px solid var(--tag-shadow);padding-bottom:8px;
-  }
-  .panel p{ font-size:13.5px;line-height:1.9;color:#4a3c2c;margin:12px 0 0; }
 </style>
 </head>
 <body>
@@ -305,61 +279,32 @@
 <div class="wall">
   <div class="beam"></div>
   <nav class="signboard" id="signboard">
-    <div class="tag wood" data-target="p2" data-href="detail.html?view=menu" style="--i:1">
+    <a class="tag wood" href="detail.html" style="--i:1">
       <div class="hole"></div>
       <span class="tag-text">メニュー</span>
-    </div>
-    <div class="tag wood" data-target="p3" data-href="detail.html?view=shop" style="--i:2">
+    </a>
+    <a class="tag wood" href="detail.html" style="--i:2">
       <div class="hole"></div>
       <span class="tag-text">お店の情報</span>
-    </div>
-    <div class="tag wood active" data-target="p1" data-href="detail.html?view=commitment" style="--i:0">
+    </a>
+    <a class="tag wood" href="kodawari.html" style="--i:0">
       <div class="hole"></div>
       <span class="tag-text">こだわり</span>
-    </div>
-    <div class="tag wood" data-target="p5" data-href="detail.html?view=coupon" style="--i:0">
+    </a>
+    <a class="tag wood" href="detail.html" style="--i:0">
       <div class="hole"></div>
       <span class="tag-text">クーポン</span>
-    </div>
-    <div class="tag wood" data-target="p6" data-href="detail.html?view=rank" style="--i:2">
+    </a>
+    <a class="tag wood" href="detail.html" style="--i:2">
       <div class="hole"></div>
-      <span class="tag-text">会員ランク</span>
-    </div>
-    <div class="tag wood" data-target="p7" data-href="access.html" style="--i:1">
+<span class="tag-text">会員ランク</span>
+</a>
+<a class="tag wood" href="access.html" style="--i:1">
       <div class="hole"></div>
       <span class="tag-text">アクセス</span>
-    </div>
+    </a>
   </nav>
 
-</div>
-
-<div class="stage">
-  <div class="panel-frame">
-    <div class="panel show" id="p1">
-      <h2>麺への、こだわり</h2>
-      <p>近隣の高校生にも届く、やさしい一杯を目指して。自家製麺は毎朝仕込み、その日のうちに使い切ります。</p>
-    </div>
-    <div class="panel" id="p2">
-      <h2>メニュー</h2>
-      <p>看板の醤油ラーメンから季節限定まで。特製醤油らーめん ￥880、味噌らーめん ￥900。</p>
-    </div>
-    <div class="panel" id="p3">
-      <h2>お店の情報</h2>
-      <p>千葉県某所、高校の目の前。放課後にふらっと寄れる距離です。営業時間 11:00〜21:00、定休日は毎週火曜。</p>
-    </div>
-    <div class="panel" id="p5">
-      <h2>クーポン</h2>
-      <p>LINE・アプリ会員限定クーポンをご用意。トッピング無料や割引特典を随時配信しています。</p>
-    </div>
-    <div class="panel" id="p6">
-      <h2>ランク機能</h2>
-      <p>来店・注文に応じてランクアップ。ランクが上がるほど特典やクーポンの内容がグレードアップします。</p>
-    </div>
-    <div class="panel" id="p7">
-      <h2>アクセス</h2>
-      <p>最寄り駅から徒歩8分、高校の正門を出てすぐ左手です。駐輪スペースあり。</p>
-    </div>
-  </div>
 </div>
 </div>
 
@@ -374,7 +319,6 @@
   }
 
   const tags = document.querySelectorAll('.tag');
-  const panels = document.querySelectorAll('.panel');
 
   function playWiggle(tag){
     tag.classList.remove('wiggle');
@@ -384,16 +328,6 @@
 
   tags.forEach(tag => {
     tag.addEventListener('mouseenter', () => playWiggle(tag));
-    tag.addEventListener('click', () => {
-      tags.forEach(t => t.classList.remove('active'));
-      tag.classList.add('active');
-      panels.forEach(p => p.classList.remove('show'));
-      const targetPanel = document.getElementById(tag.dataset.target);
-      if (targetPanel) targetPanel.classList.add('show');
-      if (tag.dataset.href) {
-        window.location.href = tag.dataset.href;
-      }
-    });
     tag.addEventListener('animationend', (e) => {
       if(e.animationName === 'wiggle') tag.classList.remove('wiggle');
     });
