@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>詳細ページ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500&family=Yuji+Boku&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wood-dark:#3b2415;
+    --wood-mid:#6b4226;
+    --counter:#a9702f;
+    --counter-dark:#8a5820;
+    --tag-cream:#efe3c4;
+    --seal-red:#a63a2e;
+    --ink:#2b2018;
+    --washi:#f7f1e2;
+    --wall:#fbf7ee;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:#1c1109;
+    font-family:"Noto Sans JP", sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+  }
+  .page{
+    max-width:900px;
+    margin:0 auto;
+    background:var(--wall);
+    min-height:100vh;
+    box-shadow:0 0 50px rgba(0,0,0,0.6);
+  }
+  .header{
+    background:linear-gradient(#7d2d29, var(--seal-red));
+    border-bottom:4px solid #5c1f18;
+    padding:22px 20px 18px;
+    text-align:center;
+    color:#f9ebc1;
+  }
+  .header h1{
+    font-family:"Yuji Boku","Shippori Mincho",serif;
+    font-weight:400;
+    margin:0;
+    font-size:clamp(28px, 4vw, 42px);
+    letter-spacing:0.08em;
+  }
+  .content{
+    padding:30px 24px 60px;
+  }
+  .card{
+    background:#fffdf9;
+    border:3px solid #d7c79b;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    padding:28px 22px;
+  }
+  .eyebrow{
+    display:inline-block;
+    padding:6px 10px;
+    background:var(--seal-red);
+    color:#fff;
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:0.08em;
+    border-radius:999px;
+  }
+  h2{
+    font-family:"Shippori Mincho",serif;
+    margin:16px 0 12px;
+    font-size:clamp(24px, 3vw, 34px);
+    color:var(--wood-dark);
+  }
+  p, li{
+    font-size:15px;
+    line-height:1.9;
+    color:#4f402f;
+  }
+  ul{
+    margin:12px 0 0;
+    padding-left:1.2rem;
+  }
+  .back{
+    display:inline-block;
+    margin-top:22px;
+    background:var(--wood-mid);
+    color:#fff;
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:700;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <h1 id="pageTitle">詳細</h1>
+    </div>
+
+    <main class="content">
+      <section class="card" id="contentBox">
+      </section>
+      <a class="back" href="index.html">← トップに戻る</a>
+    </main>
+  </div>
+
+  <script>
+    const pageData = {
+      commitment: {
+        title: '麺へのこだわり',
+        label: 'こだわり',
+        body: '<p>近隣の高校生にも届く、やさしい一杯を目指して。自家製麺は毎朝仕込み、その日のうちに使い切ります。</p><p>醤油の香りを活かしつつ、深みのあるスープに仕上げています。毎日少量ずつ手打ちし、見た目にもやさしい柔らかな食感を大切にしています。</p>'
+      },
+      menu: {
+        title: 'メニュー',
+        label: 'メニュー',
+        body: '<p>看板の醤油ラーメンから季節限定まで。特製醤油らーめん ￥880、味噌らーめん ￥900。</p><ul><li>特製醤油らーめん：香ばしい鶏ガラと熟成醤油の余韻</li><li>味噌らーめん：コクと甘みのバランスが良い一杯</li><li>追加トッピング：チャーシュー、ネギ、卵など</li></ul>'
+      },
+      shop: {
+        title: 'お店の情報',
+        label: 'お店の情報',
+        body: '<p>千葉県某所、高校の目の前。放課後にふらっと寄れる距離です。</p><p>営業時間 11:00〜21:00、定休日は毎週火曜。店内は明るく落ち着いた雰囲気で、学生から社会人まで幅広くご利用いただいています。</p>'
+      },
+      coupon: {
+        title: 'クーポン',
+        label: 'クーポン',
+        body: '<p>LINE・アプリ会員限定クーポンをご用意。トッピング無料や割引特典を随時配信しています。</p><p>友人同士での来店や、定期的な再来店でさらにお得に。毎週のキャンペーンもご覧ください。</p>'
+      },
+      rank: {
+        title: 'ランク機能',
+        label: 'ランク機能',
+        body: '<p>来店・注文に応じてランクアップ。ランクが上がるほど特典やクーポンの内容がグレードアップします。</p><p>初回入店でスタートし、一定回数の来店や購入で特別なサービスを受けられます。毎回の一杯が、ちょっと特別な体験になります。</p>'
+      },
+      access: {
+        title: 'アクセス',
+        label: 'アクセス',
+        body: '<p>最寄り駅から徒歩8分、高校の正門を出てすぐ左手です。駐輪スペースあり。</p><p>放課後や夕方の通り道からも見つけやすく、気軽に立ち寄れるロケーションです。近隣の方に安心してご利用いただけます。</p>'
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view') || 'commitment';
+    const data = pageData[view] || pageData.commitment;
+
+    document.getElementById('pageTitle').textContent = data.title;
+    const box = document.getElementById('contentBox');
+    box.innerHTML = '<div class="eyebrow">' + data.label + '</div><h2>' + data.title + '</h2>' + data.body;
+  </script>
+</body>
+</html>

@@ -305,27 +305,27 @@
 <div class="wall">
   <div class="beam"></div>
   <nav class="signboard" id="signboard">
-    <div class="tag wood" data-target="p2" style="--i:1">
+    <div class="tag wood" data-target="p2" data-href="detail.html?view=menu" style="--i:1">
       <div class="hole"></div>
       <span class="tag-text">メニュー</span>
     </div>
-    <div class="tag wood" data-target="p3" style="--i:2">
+    <div class="tag wood" data-target="p3" data-href="detail.html?view=shop" style="--i:2">
       <div class="hole"></div>
       <span class="tag-text">お店の情報</span>
     </div>
-    <div class="tag wood active" data-target="p1" style="--i:0">
+    <div class="tag wood active" data-target="p1" data-href="detail.html?view=commitment" style="--i:0">
       <div class="hole"></div>
       <span class="tag-text">こだわり</span>
     </div>
-    <div class="tag wood" data-target="p5" style="--i:0">
+    <div class="tag wood" data-target="p5" data-href="detail.html?view=coupon" style="--i:0">
       <div class="hole"></div>
       <span class="tag-text">クーポン</span>
     </div>
-    <div class="tag wood" data-target="p6" style="--i:2">
+    <div class="tag wood" data-target="p6" data-href="detail.html?view=rank" style="--i:2">
       <div class="hole"></div>
       <span class="tag-text">ランク機能</span>
     </div>
-    <div class="tag wood" data-target="p7" style="--i:1">
+    <div class="tag wood" data-target="p7" data-href="detail.html?view=access" style="--i:1">
       <div class="hole"></div>
       <span class="tag-text">アクセス</span>
     </div>
@@ -388,7 +388,11 @@
       tags.forEach(t => t.classList.remove('active'));
       tag.classList.add('active');
       panels.forEach(p => p.classList.remove('show'));
-      document.getElementById(tag.dataset.target).classList.add('show');
+      const targetPanel = document.getElementById(tag.dataset.target);
+      if (targetPanel) targetPanel.classList.add('show');
+      if (tag.dataset.href) {
+        window.location.href = tag.dataset.href;
+      }
     });
     tag.addEventListener('animationend', (e) => {
       if(e.animationName === 'wiggle') tag.classList.remove('wiggle');
