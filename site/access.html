@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みうらや誠麺 アクセス</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wood-dark: #3b2415;
+    --wood-mid: #6b4226;
+    --wood-light: #a8754b;
+    --counter: #a9702f;
+    --counter-dark: #8a5820;
+    --tag-cream: #efe3c4;
+    --paper: #f7f0df;
+    --paper-deep: #eadbb2;
+    --seal-red: #a63a2e;
+    --seal-red-deep: #7f241d;
+    --ink: #2b2018;
+    --muted: #5a4739;
+    --black: #111111;
+    --white: #fffdf8;
+    --shadow: rgba(27, 17, 13, 0.18);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #140d0a;
+    color: var(--ink);
+    font-family: "Noto Sans JP", sans-serif;
+    min-height: 100vh;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, iframe {
+    max-width: 100%;
+    display: block;
+  }
+
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02)),
+      repeating-linear-gradient(
+        90deg,
+        #f6f0e3 0,
+        #f6f0e3 18px,
+        #f1ead9 18px,
+        #f1ead9 36px
+      );
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(75,42,20,0.04), rgba(75,42,20,0.04)),
+      repeating-linear-gradient(
+        0deg,
+        rgba(58,38,25,0.02),
+        rgba(58,38,25,0.02) 2px,
+        transparent 2px,
+        transparent 6px
+      );
+    pointer-events: none;
+  }
+
+  .page > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .topbar {
+    background: linear-gradient(180deg, #7d2c27, var(--seal-red));
+    border-bottom: 4px solid #5a1e1a;
+    padding: 26px 24px 18px;
+    text-align: center;
+  }
+
+  .topbar h1 {
+    margin: 0;
+    font-family: "Yuji Boku", "Shippori Mincho", serif;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: #f7ebc6;
+    text-shadow: 0 2px 0 rgba(29, 10, 6, 0.45);
+  }
+
+  .topbar h2 {
+    margin: 8px 0 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    color: rgba(255, 245, 216, 0.96);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  .content {
+    padding: 28px 20px 60px;
+  }
+
+  .panel {
+    max-width: 960px;
+    margin: 0 auto 26px;
+    background: rgba(255, 250, 240, 0.8);
+    border: 3px solid rgba(94, 58, 36, 0.7);
+    border-radius: 18px 18px 10px 10px;
+    box-shadow: 0 10px 26px rgba(22, 12, 8, 0.12);
+    overflow: hidden;
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 22px 14px;
+    background: linear-gradient(180deg, #efd9ad, #dcc389);
+    border-bottom: 3px solid rgba(72, 57, 36, 0.7);
+  }
+
+  .panel-head h3 {
+    margin: 0;
+    font-family: "Shippori Mincho", serif;
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    color: var(--wood-dark);
+    letter-spacing: 0.06em;
+  }
+
+  .panel-head .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 10px;
+    background: var(--seal-red);
+    color: #fff;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    min-width: 80px;
+  }
+
+  .map-frame {
+    padding: 22px;
+  }
+
+  .map-shell {
+    position: relative;
+    background: linear-gradient(180deg, #f6f0e2, #e7d9b5);
+    border: 4px solid #6b4226;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: inset 0 0 0 2px rgba(72, 54, 32, 0.45), 0 10px 18px rgba(22, 12, 8, 0.12);
+  }
+
+  .map-shell iframe {
+    width: 100%;
+    min-height: 420px;
+    border: 0;
+    border-radius: 8px;
+    filter: saturate(0.9) contrast(1.05);
+  }
+
+  .info-wrap {
+    padding: 0 22px 22px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .info-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(240,228,197,0.68));
+    border: 2px solid rgba(110, 78, 49, 0.7);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 18px rgba(22,16,12,0.08);
+  }
+
+  .info-card .label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.76rem;
+    color: var(--seal-red-deep);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  .info-card .value {
+    color: var(--ink);
+    font-size: 0.98rem;
+    line-height: 1.8;
+    font-weight: 500;
+  }
+
+  .info-card .value.muted {
+    color: var(--muted);
+  }
+
+  .cta-wrap {
+    padding: 0 22px 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 220px;
+    padding: 14px 20px;
+    border-radius: 999px;
+    border: 2px solid rgba(255,255,255,0.18);
+    background: linear-gradient(180deg, #7b382d, #5b251f);
+    color: #fbecc8;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    box-shadow: 0 10px 20px rgba(35, 18, 13, 0.18);
+  }
+
+  .button.secondary {
+    background: linear-gradient(180deg, #8a5d38, #694725);
+  }
+
+  @media (max-width: 700px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .map-shell iframe {
+      min-height: 300px;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .content {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .map-frame,
+    .info-wrap,
+    .cta-wrap {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    .button {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .cta-row {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <h1>みうらや誠麺</h1>
+      <h2>アクセス</h2>
+    </header>
+
+    <main class="content">
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Googleマップ</h3>
+          <span class="tag">案内</span>
+        </div>
+        <div class="map-frame">
+          <div class="map-shell">
+            <!-- TODO: 店舗の正式住所を入力 -->
+            <iframe
+              src="https://www.google.com/maps?q=%E5%8D%83%E8%91%89%E7%9C%8B+%E3%81%82%E3%81%82&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="みうらや誠麺の地図">
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>店舗情報</h3>
+          <span class="tag">詳細</span>
+        </div>
+
+        <div class="info-wrap">
+          <div class="info-grid">
+            <div class="info-card">
+              <span class="label">店舗名</span>
+              <div class="value">みうらや誠麺</div>
+            </div>
+            <div class="info-card">
+              <span class="label">住所</span>
+              <div class="value muted">確認中</div>
+            </div>
+            <div class="info-card">
+              <span class="label">営業時間</span>
+              <div class="value muted">確認中</div>
+            </div>
+            <div class="info-card">
+              <span class="label">定休日</span>
+              <div class="value muted">確認中</div>
+            </div>
+            <div class="info-card">
+              <span class="label">最寄り駅</span>
+              <div class="value muted">確認中</div>
+            </div>
+            <div class="info-card">
+              <span class="label">駐車場または駐輪場</span>
+              <div class="value muted">確認中</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="cta-wrap">
+        <div class="cta-row">
+          <a class="button" href="https://maps.google.com/?q=%E5%8D%83%E8%91%89%E7%9C%8B+%E3%81%82%E3%81%82" target="_blank" rel="noopener noreferrer">Googleマップで開く</a>
+          <a class="button secondary" href="index.html">トップページへ戻る</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
