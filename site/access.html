@@ -34,6 +34,7 @@
     color: var(--ink);
     font-family: "Noto Sans JP", sans-serif;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   a { color: inherit; text-decoration: none; }
@@ -170,6 +171,7 @@
   .map-shell iframe {
     width: 100%;
     min-height: 420px;
+    aspect-ratio: 16 / 9;
     border: 0;
     border-radius: 8px;
     filter: saturate(0.9) contrast(1.05);
@@ -207,6 +209,14 @@
     font-size: 0.98rem;
     line-height: 1.8;
     font-weight: 500;
+  }
+
+  .hours {
+    display: grid;
+    grid-template-columns: 6em minmax(0, 1fr);
+    gap: 3px 8px;
+    align-items: baseline;
+    white-space: nowrap;
   }
 
   .info-card .value.muted {
@@ -273,6 +283,12 @@
       min-width: 0;
     }
 
+    .hours {
+      grid-template-columns: 5.2em minmax(0, 1fr);
+      font-size: 0.9rem;
+      white-space: normal;
+    }
+
     .cta-row {
       width: 100%;
       flex-direction: column;
@@ -295,9 +311,8 @@
         </div>
         <div class="map-frame">
           <div class="map-shell">
-            <!-- TODO: 店舗の正式住所を入力 -->
             <iframe
-              src="https://www.google.com/maps?q=%E5%8D%83%E8%91%89%E7%9C%8B+%E3%81%82%E3%81%82&output=embed"
+              src="https://www.google.com/maps?q=%E3%80%92397-0074+%E5%8D%83%E8%91%89%E7%9C%8C%E8%8C%82%E5%8E%9F%E5%B8%82%E5%B0%8F%E6%9E%971978-57&output=embed"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title="みうらや誠麺の地図">
@@ -320,22 +335,21 @@
             </div>
             <div class="info-card">
               <span class="label">住所</span>
-              <div class="value muted">確認中</div>
+              <div class="value">〒297-0074<br>千葉県茂原市小林1978-57</div>
             </div>
             <div class="info-card">
               <span class="label">営業時間</span>
-              <div class="value muted">確認中</div>
+              <div class="value hours">
+                <span>平日</span><span>11:00〜14:30</span>
+                <span>休日・祝日</span><span>11:00〜14:30 / 17:00〜21:00</span>
+              </div>
             </div>
             <div class="info-card">
               <span class="label">定休日</span>
               <div class="value muted">確認中</div>
             </div>
             <div class="info-card">
-              <span class="label">最寄り駅</span>
-              <div class="value muted">確認中</div>
-            </div>
-            <div class="info-card">
-              <span class="label">駐車場または駐輪場</span>
+              <span class="label">駐車場 / 駐輪場</span>
               <div class="value muted">確認中</div>
             </div>
           </div>
@@ -344,7 +358,7 @@
 
       <div class="cta-wrap">
         <div class="cta-row">
-          <a class="button" href="https://maps.google.com/?q=%E5%8D%83%E8%91%89%E7%9C%8B+%E3%81%82%E3%81%82" target="_blank" rel="noopener noreferrer">Googleマップで開く</a>
+          <a class="button" href="https://www.google.com/maps/search/?api=1&query=%E3%80%92397-0074+%E5%8D%83%E8%91%89%E7%9C%8C%E8%8C%82%E5%8E%9F%E5%B8%82%E5%B0%8F%E6%9E%971978-57" target="_blank" rel="noopener noreferrer">Googleマップで開く</a>
           <a class="button secondary" href="index.html">トップページへ戻る</a>
         </div>
       </div>
