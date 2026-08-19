@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みうらや誠麺 麺への、こだわり</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
+<style>
+	:root {
+		--wood-dark: #332116;
+		--wood-mid: #624027;
+		--wood-light: #9b693f;
+		--paper: #f7f0df;
+		--paper-deep: #e8d6ac;
+		--red: #a8322a;
+		--red-dark: #76231d;
+		--ink: #2a1c14;
+		--shadow: rgba(24, 13, 8, 0.25);
+	}
+
+	* { box-sizing: border-box; }
+
+	html { background: #160d08; }
+
+	body {
+		margin: 0;
+		min-width: 0;
+		overflow-x: hidden;
+		color: var(--ink);
+		font-family: "Noto Sans JP", sans-serif;
+		background:
+			linear-gradient(rgba(25, 13, 7, 0.5), rgba(25, 13, 7, 0.5)),
+			repeating-linear-gradient(90deg, #4d2d1a 0 20px, #5e3821 20px 38px, #432515 38px 54px);
+	}
+
+	a { color: inherit; text-decoration: none; }
+
+	.page {
+		width: min(100%, 980px);
+		min-height: 100vh;
+		margin: 0 auto;
+		background:
+			linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
+			repeating-linear-gradient(0deg, #f6efdf 0 3px, #f1e8d4 3px 7px);
+		box-shadow: 0 0 45px rgba(0,0,0,0.55);
+	}
+
+	.topbar {
+		padding: 28px 22px 24px;
+		text-align: center;
+		background:
+			linear-gradient(rgba(45, 27, 17, 0.12), rgba(45, 27, 17, 0.12)),
+			repeating-linear-gradient(0deg, #3d281b 0 12px, #493020 12px 20px);
+		border-bottom: 5px solid var(--red-dark);
+	}
+
+	.brand {
+		margin: 0;
+		color: #f3e5bf;
+		font-family: "Yuji Boku", "Shippori Mincho", serif;
+		font-size: clamp(2.3rem, 6vw, 4.4rem);
+		font-weight: 400;
+		letter-spacing: 0.12em;
+		text-shadow: 2px 3px 0 #160d08;
+	}
+
+	.title {
+		margin: 10px 0 0;
+		color: #fff7df;
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.5rem, 3vw, 2.3rem);
+		letter-spacing: 0.16em;
+	}
+
+	.subtitle {
+		margin: 8px 0 0;
+		color: #f0cda1;
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1rem, 2vw, 1.25rem);
+		letter-spacing: 0.14em;
+	}
+
+	main { padding: 30px 24px 56px; }
+
+	.section {
+		max-width: 900px;
+		margin: 0 auto 30px;
+		border: 5px solid var(--wood-dark);
+		background: rgba(247, 240, 223, 0.92);
+		box-shadow: 0 10px 24px var(--shadow), inset 0 0 0 2px #b89568;
+	}
+
+	.section-heading {
+		margin: 0;
+		padding: 14px 20px 12px;
+		color: #fff1cd;
+		background: linear-gradient(180deg, #b44235, var(--red-dark));
+		border-bottom: 3px solid var(--wood-dark);
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.3rem, 3vw, 1.8rem);
+		letter-spacing: 0.1em;
+	}
+
+	.feature {
+		display: grid;
+		grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.65fr);
+		gap: 24px;
+		align-items: center;
+		padding: 22px;
+	}
+
+	.feature-image {
+		width: 100%;
+		height: auto;
+		border: 8px solid var(--wood-mid);
+		outline: 2px solid var(--wood-light);
+		box-shadow: 0 8px 16px var(--shadow);
+	}
+
+	.feature-copy h3 {
+		margin: 0 0 12px;
+		color: var(--red-dark);
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.4rem, 3vw, 2rem);
+	}
+
+	.feature-copy p {
+		margin: 0;
+		line-height: 2;
+		font-size: 0.98rem;
+	}
+
+	.source-note {
+		margin: 14px 0 0;
+		color: #6d513c;
+		font-size: 0.78rem;
+		line-height: 1.7;
+	}
+
+	.facts { padding: 22px; }
+
+	.fact-list {
+		display: grid;
+		gap: 10px;
+		margin: 0;
+	}
+
+	.fact {
+		display: grid;
+		grid-template-columns: minmax(145px, 0.7fr) minmax(0, 1.3fr);
+		gap: 16px;
+		padding: 13px 14px;
+		background: linear-gradient(90deg, #ead5a7, #f8f1df);
+		border-left: 7px solid var(--red);
+	}
+
+	.fact dt { font-weight: 700; color: var(--red-dark); }
+	.fact dd { margin: 0; line-height: 1.75; }
+
+	.choices {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 12px;
+		padding: 22px;
+	}
+
+	.choice {
+		padding: 18px 12px;
+		text-align: center;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #77502f, #472b1b);
+		border: 3px solid #b78c57;
+		box-shadow: 0 5px 10px var(--shadow);
+		font-family: "Shippori Mincho", serif;
+		font-size: 1.15rem;
+		font-weight: 700;
+	}
+
+	.actions {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 14px;
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.button {
+		display: inline-flex;
+		min-width: 220px;
+		min-height: 52px;
+		align-items: center;
+		justify-content: center;
+		padding: 13px 20px;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #ae3c31, #76231d);
+		border: 3px solid #4b2118;
+		box-shadow: 0 6px 12px var(--shadow);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+	}
+
+	.button.secondary { background: linear-gradient(180deg, #815633, #54331f); }
+
+	@media (max-width: 700px) {
+		main { padding: 22px 14px 42px; }
+
+		.feature { grid-template-columns: 1fr; gap: 18px; padding: 16px; }
+		.facts { padding: 16px; }
+		.fact { grid-template-columns: 1fr; gap: 3px; }
+	}
+
+	@media (max-width: 390px) {
+		.topbar { padding-left: 14px; padding-right: 14px; }
+		.section-heading { padding-left: 14px; padding-right: 14px; }
+		.choices { grid-template-columns: 1fr; padding: 16px; }
+		.button { width: 100%; min-width: 0; }
+		.actions { flex-direction: column; }
+	}
+</style>
+</head>
+<body>
+	<div class="page">
+		<header class="topbar">
+			<h1 class="brand">みうらや誠麺</h1>
+			<p class="title">麺への、こだわり</p>
+			<p class="subtitle">一杯を支える、麺。</p>
+		</header>
+
+		<main>
+			<section class="section">
+				<h2 class="section-heading">麺の種類</h2>
+				<div class="feature">
+					<img class="feature-image" src="static/images/menu/S__50241544_0.jpg" alt="みうらや誠麺の麺の種類と特徴を紹介する店頭掲示">
+					<div class="feature-copy">
+						<h3>麺を知ると、選ぶ楽しさが広がる。</h3>
+						<p>店頭掲示では、商品ごとに麺の種類と特徴が紹介されています。まずはこの一枚から、みうらや誠麺の麺をご覧ください。</p>
+						<p class="source-note">※掲載内容は店頭掲示の記載をもとにしています。</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<h2 class="section-heading">店頭資料からわかる麺</h2>
+				<div class="facts">
+					<dl class="fact-list">
+						<div class="fact">
+							<dt>#20 真空卵麺</dt>
+							<dd>竹岡式らーめん</dd>
+						</div>
+						<div class="fact">
+							<dt>#22 細縮れ麺</dt>
+							<dd>昭和の中華そば / こってり中華そば</dd>
+						</div>
+						<div class="fact">
+							<dt>#20 縦切り麺</dt>
+							<dd>家系らーめん</dd>
+						</div>
+						<div class="fact">
+							<dt>#14 モチモチ太麺</dt>
+							<dd>味噌らーめん</dd>
+						</div>
+						<div class="fact">
+							<dt>#26 極細低加水麺</dt>
+							<dd>とんこつらーめん</dd>
+						</div>
+						<div class="fact">
+							<dt>#12 全粒粉入り極太麺</dt>
+							<dd>魚介つけ麺</dd>
+						</div>
+						<div class="fact">
+							<dt>生麺</dt>
+							<dd>真空卵麺を使用</dd>
+						</div>
+						<div class="fact">
+							<dt>製造について</dt>
+							<dd>麺は昭和30年代当時の配合で製造</dd>
+						</div>
+					</dl>
+				</div>
+			</section>
+
+			<section class="section">
+				<h2 class="section-heading">お好みの一杯へ</h2>
+				<div class="facts">
+					<p>店頭メニューには、らーめんの麺の硬さを選べる案内があります。</p>
+					<p class="source-note"><!-- TODO: 店長に確認 --></p>
+				</div>
+				<div class="choices" aria-label="麺の硬さ">
+					<div class="choice">柔らかめ</div>
+					<div class="choice">普通</div>
+					<div class="choice">硬め</div>
+				</div>
+			</section>
+
+			<div class="actions">
+				<a class="button" href="detail.html">麺を味わう / お品書きを見る</a>
+				<a class="button secondary" href="index.html">トップページへ戻る</a>
+			</div>
+		</main>
+	</div>
+</body>
+</html>
