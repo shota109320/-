@@ -266,5 +266,15 @@
 			</div>
 		</main>
 	</div>
+
+		<script>
+			// DEMO ONLY: Firebase接続後にこのブロックを削除
+			const isDemoLoggedIn = sessionStorage.getItem('demoLoggedIn') === 'true';
+			const guestContent = document.getElementById('guest-content');
+			const memberCouponContent = document.getElementById('member-coupon-content');
+
+			guestContent.hidden = isDemoLoggedIn;
+			memberCouponContent.hidden = !isDemoLoggedIn;
+		</script>
 </body>
 </html>
