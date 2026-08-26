@@ -291,6 +291,10 @@
     gap: 16px;
   }
 
+  .carousel-dots {
+    display: none;
+  }
+
   .menu-card {
     background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(243,230,198,0.7));
     border: 2px solid rgba(114, 81, 48, 0.7);
@@ -576,7 +580,7 @@
     }
   }
 
-  @media (max-width: 560px) {
+  @media (max-width: 768px) {
     .content {
       padding-left: 12px;
       padding-right: 12px;
@@ -602,10 +606,74 @@
     }
 
     .recommend-grid,
-    .menu-grid,
     .sheet-grid,
     .topping-grid {
       grid-template-columns: 1fr;
+    }
+
+    .menu-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      width: 100%;
+      padding: 4px 0 14px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overscroll-behavior-x: contain;
+      touch-action: pan-x;
+    }
+
+    .menu-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .menu-grid::after {
+      content: "← 左右にスワイプ →";
+      flex: 0 0 0;
+      height: 0;
+      overflow: hidden;
+      color: var(--muted);
+    }
+
+    .menu-card {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 100%;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .category-block::before {
+      content: "← 左右にスワイプ →";
+      display: block;
+      margin: -4px 0 8px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-align: right;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 4px 0 14px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      padding: 0;
+      border: 1px solid var(--seal-red-deep);
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .carousel-dot.is-active {
+      background: var(--seal-red);
     }
 
     .sheet-grid {
@@ -772,28 +840,9 @@
                 <p class="note">厚めのチャーシューと背脂で、コク深い味わいが楽しめます。</p>
               </div>
             </article>
-
-            <article class="menu-card">
-              <div class="image">
-                <img src="static/images/menu/66613_0.jpg" alt="家系らーめん" style="object-position:center 57%;">
-              </div>
-              <div class="info">
-                <h3>家系らーめん</h3>
-                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
-                <p class="note">濃厚なスープと、しっかりした満足感が魅力のラーメンです。</p>
-              </div>
-            </article>
-
-            <article class="menu-card">
-              <div class="image">
-                <img src="static/images/menu/66614_0.jpg" alt="背脂入り味噌らーめん" style="object-position:center 52%;">
-              </div>
-              <div class="info">
-                <h3>背脂入り味噌らーめん</h3>
-                <div class="meta"><span class="no-price">価格：店頭確認</span></div>
-                <p class="note">オレンジ系の味噌スープに、もやし・わかめ・メンマが乗る定番の味噌ラーメン。</p>
-              </div>
-            </article>
+          </div>
+          <div class="carousel-dots" aria-label="竹岡式の商品位置">
+            <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
           </div>
         </div>
 
@@ -835,6 +884,9 @@
               </div>
             </article>
           </div>
+          <div class="carousel-dots" aria-label="味噌・醤油の商品位置">
+            <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+          </div>
         </div>
 
         <div id="category-tonkotsu" class="category-block">
@@ -875,6 +927,9 @@
               </div>
             </article>
           </div>
+          <div class="carousel-dots" aria-label="その他の商品位置">
+            <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+          </div>
         </div>
 
         <div id="category-set" class="category-block">
@@ -903,6 +958,9 @@
                 <p class="note">トロリとした玉子をプラスできます。</p>
               </div>
             </article>
+          </div>
+          <div class="carousel-dots" aria-label="サイドメニュー・トッピングの商品位置">
+            <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
           </div>
         </div>
       </section>
@@ -1018,6 +1076,20 @@
       if (event.key === 'Escape' && lightbox.classList.contains('show')) {
         closeLightbox();
       }
+    });
+
+    document.querySelectorAll('.category-block').forEach(category => {
+      const slider = category.querySelector('.menu-grid');
+      const dots = category.querySelectorAll('.carousel-dot');
+      if (!slider || !dots.length) return;
+
+      slider.addEventListener('scroll', () => {
+        const card = slider.querySelector('.menu-card');
+        const gap = parseFloat(getComputedStyle(slider).gap) || 0;
+        const step = card.getBoundingClientRect().width + gap;
+        const activeIndex = Math.min(dots.length - 1, Math.round(slider.scrollLeft / step));
+        dots.forEach((dot, index) => dot.classList.toggle('is-active', index === activeIndex));
+      }, { passive: true });
     });
   </script>
 </body>
