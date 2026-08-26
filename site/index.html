@@ -75,19 +75,27 @@
     border:1px solid rgba(180,170,150,0.35);
     pointer-events:none;
   }
-  .board .emblem{
-    flex-shrink:0;
-    width:46px;height:46px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #c0453a, #7a251c);
-    border:3px solid #e8e0c8;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 2px 6px rgba(0,0,0,0.5);
-  }
-  .board .emblem span{
-    font-family:"Yuji Boku", serif;
-    color:#f2e6c8;
-    font-size:15px;
-  }
+.board .emblem{
+  flex-shrink:0;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  overflow:hidden;
+  background:#f2e6c8;
+  border:3px solid #e8e0c8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.5);
+}
+
+.board .emblem img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+}
   .board h1{
     font-family:"Yuji Boku", "Shippori Mincho", serif;
     font-weight:400;
@@ -278,7 +286,9 @@
 
 <header>
   <div class="board">
-    <div class="emblem"><span>誠</span></div>
+    <div class="emblem">
+  <img src="static/images/menu/S__50724889.jpg" alt="みうらや誠麺 ロゴ">
+</div>
     <h1><span class="name-kana">みうらや</span><span class="name-kanji">誠麺</span></h1>
     <div class="legs">
       <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 0 L18 0 L10 16 Z" fill="#6b4226"/></svg>
