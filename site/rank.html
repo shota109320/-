@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みうらや誠麺 会員ランク</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
+<style>
+	:root {
+		--wood-dark: #332116;
+		--wood-mid: #624027;
+		--wood-light: #9b693f;
+		--paper: #f7f0df;
+		--paper-deep: #e8d6ac;
+		--red: #a8322a;
+		--red-dark: #76231d;
+		--ink: #2a1c14;
+		--muted: #604b3b;
+		--silver: #b8b8b2;
+		--silver-dark: #777873;
+		--gold: #d3a02c;
+		--shadow: rgba(24, 13, 8, 0.25);
+	}
+
+	* { box-sizing: border-box; }
+
+	html { background: #160d08; }
+
+	body {
+		margin: 0;
+		min-width: 0;
+		overflow-x: hidden;
+		color: var(--ink);
+		font-family: "Noto Sans JP", sans-serif;
+		background:
+			linear-gradient(rgba(25, 13, 7, 0.5), rgba(25, 13, 7, 0.5)),
+			repeating-linear-gradient(90deg, #4d2d1a 0 20px, #5e3821 20px 38px, #432515 38px 54px);
+	}
+
+	a { color: inherit; text-decoration: none; }
+
+	.page {
+		width: min(100%, 980px);
+		min-height: 100vh;
+		margin: 0 auto;
+		background:
+			linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
+			repeating-linear-gradient(0deg, #f6efdf 0 3px, #f1e8d4 3px 7px);
+		box-shadow: 0 0 45px rgba(0,0,0,0.55);
+	}
+
+	.topbar {
+		padding: 28px 22px 24px;
+		text-align: center;
+		background:
+			linear-gradient(rgba(45, 27, 17, 0.12), rgba(45, 27, 17, 0.12)),
+			repeating-linear-gradient(0deg, #3d281b 0 12px, #493020 12px 20px);
+		border-bottom: 5px solid var(--red-dark);
+	}
+
+	.brand {
+		margin: 0;
+		color: #f3e5bf;
+		font-family: "Yuji Boku", "Shippori Mincho", serif;
+		font-size: clamp(2.3rem, 6vw, 4.4rem);
+		font-weight: 400;
+		letter-spacing: 0.12em;
+		text-shadow: 2px 3px 0 #160d08;
+	}
+
+	.title {
+		margin: 10px 0 0;
+		color: #fff7df;
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.5rem, 3vw, 2.3rem);
+		letter-spacing: 0.16em;
+	}
+
+	main { padding: 30px 24px 56px; }
+
+	.section {
+		max-width: 900px;
+		margin: 0 auto 26px;
+		border: 5px solid var(--wood-dark);
+		background: rgba(247, 240, 223, 0.94);
+		box-shadow: 0 10px 24px var(--shadow), inset 0 0 0 2px #b89568;
+	}
+
+	.section-heading {
+		margin: 0;
+		padding: 14px 20px 12px;
+		color: #fff1cd;
+		background: linear-gradient(180deg, #b44235, var(--red-dark));
+		border-bottom: 3px solid var(--wood-dark);
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.3rem, 3vw, 1.8rem);
+		letter-spacing: 0.1em;
+	}
+
+	.section-body { padding: 22px; }
+
+	.rank-plank {
+		position: relative;
+		padding: 28px 24px 25px;
+		text-align: center;
+		background: linear-gradient(135deg, #d0d0cb, #969791 55%, #c9c9c3);
+		border: 7px solid var(--wood-mid);
+		box-shadow: inset 0 0 0 2px #ece6d2, 0 9px 16px var(--shadow);
+	}
+
+	.rank-plank::before,
+	.rank-plank::after {
+		content: "";
+		position: absolute;
+		left: 5%;
+		right: 5%;
+		height: 1px;
+		background: rgba(80, 80, 75, 0.25);
+	}
+
+	.rank-plank::before { top: 18px; }
+	.rank-plank::after { bottom: 18px; }
+
+	.rank-label {
+		display: block;
+		color: #4c4e4a;
+		font-size: 0.86rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+	}
+
+	.rank-name {
+		display: block;
+		margin-top: 9px;
+		color: #292a28;
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(2rem, 6vw, 3.6rem);
+		font-weight: 700;
+		letter-spacing: 0.12em;
+	}
+
+	.rank-mark {
+		display: inline-flex;
+		width: 42px;
+		height: 42px;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 8px;
+		border: 3px solid #72736f;
+		border-radius: 50%;
+		color: #555652;
+		font-family: "Shippori Mincho", serif;
+		font-weight: 700;
+	}
+
+	.stats {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 14px;
+		margin-top: 18px;
+	}
+
+	.stat {
+		padding: 17px;
+		text-align: center;
+		background: linear-gradient(135deg, var(--paper-deep), var(--paper));
+		border-left: 7px solid var(--wood-mid);
+	}
+
+	.stat-label {
+		display: block;
+		color: var(--red-dark);
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+	}
+
+	.stat-value {
+		display: block;
+		margin-top: 7px;
+		color: var(--ink);
+		font-family: "Shippori Mincho", serif;
+		font-size: 2.4rem;
+		font-weight: 700;
+		line-height: 1.1;
+	}
+
+	.progress-copy {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 10px;
+		margin-bottom: 10px;
+		font-weight: 700;
+	}
+
+	.progress-copy strong { color: var(--red-dark); }
+
+	.progress-track {
+		height: 22px;
+		padding: 3px;
+		background: #d8c9a5;
+		border: 2px solid var(--wood-mid);
+		border-radius: 999px;
+	}
+
+	.progress-bar {
+		width: 70%;
+		height: 100%;
+		border-radius: 999px;
+		background: linear-gradient(90deg, var(--red-dark), var(--gold));
+	}
+
+	.progress-number {
+		margin: 8px 0 0;
+		color: var(--muted);
+		font-size: 0.88rem;
+		text-align: right;
+	}
+
+	.coupon {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 18px;
+		padding: 18px;
+		background: linear-gradient(135deg, #fff4d5, #e8d7aa);
+		border: 3px dashed var(--red);
+	}
+
+	.coupon-label {
+		display: block;
+		color: var(--red-dark);
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+	}
+
+	.coupon-name {
+		display: block;
+		margin-top: 5px;
+		font-family: "Shippori Mincho", serif;
+		font-size: 1.6rem;
+		font-weight: 700;
+	}
+
+	.coupon-button,
+	.home-button {
+		display: inline-flex;
+		min-height: 50px;
+		align-items: center;
+		justify-content: center;
+		padding: 12px 20px;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #ae3c31, #76231d);
+		border: 3px solid #4b2118;
+		box-shadow: 0 5px 10px var(--shadow);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		cursor: default;
+	}
+
+	.history { display: grid; gap: 10px; }
+
+	.history-item {
+		display: flex;
+		justify-content: space-between;
+		padding: 13px 16px;
+		background: rgba(232, 214, 172, 0.65);
+		border-bottom: 2px solid var(--wood-light);
+	}
+
+	.history-item span:first-child { color: var(--muted); }
+	.history-item span:last-child { color: var(--red-dark); font-weight: 700; }
+
+	.home-wrap { display: flex; justify-content: center; }
+	.home-button { background: linear-gradient(180deg, #815633, #54331f); min-width: 240px; }
+
+	@media (max-width: 600px) {
+		main { padding: 22px 14px 42px; }
+		.section-body { padding: 16px; }
+		.stats { grid-template-columns: 1fr; }
+		.coupon { align-items: stretch; flex-direction: column; gap: 14px; }
+		.coupon-button { width: 100%; }
+	}
+
+	@media (max-width: 390px) {
+		.topbar { padding-left: 14px; padding-right: 14px; }
+		.section-heading { padding-left: 14px; padding-right: 14px; }
+		.rank-plank { padding-left: 12px; padding-right: 12px; }
+		.progress-copy { align-items: flex-start; flex-direction: column; gap: 3px; }
+		.progress-number { text-align: left; }
+		.home-button { width: 100%; min-width: 0; }
+	}
+</style>
+</head>
+<body>
+	<div class="page">
+		<header class="topbar">
+			<h1 class="brand">みうらや誠麺</h1>
+			<p class="title">会員ランク</p>
+		</header>
+
+		<main>
+			<section class="section">
+				<h2 class="section-heading">現在のランク</h2>
+				<div class="section-body">
+					<!-- 仮データ：後でログインユーザーのランクに置き換える -->
+					<div class="rank-plank">
+						<span class="rank-mark">銀</span>
+						<span class="rank-label">現在のランク</span>
+						<strong class="rank-name">シルバー会員</strong>
+					</div>
+
+					<div class="stats">
+						<div class="stat">
+							<span class="stat-label">来店回数</span>
+							<!-- 仮データ：後でデータベースの来店回数に置き換える -->
+							<strong class="stat-value">7回</strong>
+						</div>
+						<div class="stat">
+							<span class="stat-label">次のランクまで</span>
+							<!-- 仮データ：後でランク判定データに置き換える -->
+							<strong class="stat-value">あと3回</strong>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<h2 class="section-heading">次のランクまで</h2>
+				<div class="section-body">
+					<!-- 仮データ：後でログインユーザーの進捗データに置き換える -->
+					<div class="progress-copy">
+						<span>ゴールドランクまであと3回</span>
+						<strong>7 / 10</strong>
+					</div>
+					<div class="progress-track" role="progressbar" aria-label="ゴールドランクまでの来店進捗" aria-valuemin="0" aria-valuemax="10" aria-valuenow="7">
+						<div class="progress-bar"></div>
+					</div>
+					<p class="progress-number">現在 7回 / 必要 10回</p>
+				</div>
+			</section>
+
+			<section class="section">
+				<h2 class="section-heading">あなたのクーポン</h2>
+				<div class="section-body">
+					<!-- 仮クーポン：後で店舗の正式な内容に変更 -->
+					<div class="coupon">
+						<div>
+							<span class="coupon-label">会員限定クーポン</span>
+							<strong class="coupon-name">味玉無料</strong>
+						</div>
+						<button class="coupon-button" type="button">利用する</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="section">
+				<h2 class="section-heading">来店履歴</h2>
+				<div class="section-body">
+					<!-- 仮データ：後でデータベースの来店履歴に置き換える -->
+					<div class="history">
+						<div class="history-item"><span>2026/08/20</span><span>来店</span></div>
+						<div class="history-item"><span>2026/08/15</span><span>来店</span></div>
+						<div class="history-item"><span>2026/08/03</span><span>来店</span></div>
+					</div>
+				</div>
+			</section>
+
+			<div class="home-wrap">
+				<a class="home-button" href="index.html">トップページへ戻る</a>
+			</div>
+		</main>
+	</div>
+</body>
+</html>
