@@ -172,6 +172,15 @@
 		font: inherit;
 	}
 
+	.login-error {
+		min-height: 1.7em;
+		margin: 13px 0 0;
+		color: var(--red-dark);
+		font-size: 0.9rem;
+		line-height: 1.7;
+		text-align: center;
+	}
+
 	.signup-area {
 		margin-top: 24px;
 		padding-top: 20px;
@@ -229,7 +238,8 @@
 				<div class="form-body">
 					<p class="intro">会員ランクをご確認いただくためのログイン画面です。</p>
 
-					<form id="login-form">
+					<!-- DEMO ONLY: Firebase Auth接続後に削除 -->
+					<form id="login-form" novalidate>
 						<div class="field">
 							<label for="email">メールアドレス</label>
 							<input id="email" name="email" type="email" autocomplete="email" placeholder="example@email.com">
@@ -245,8 +255,9 @@
 							<span>パスワードを表示</span>
 						</label>
 
-						<!-- TODO: Supabase Authによるログイン処理を後で実装 -->
-						<button class="login-button" type="button">ログイン</button>
+						<!-- TODO: Firebase Authenticationによるログイン処理を後で実装 -->
+						<button class="login-button" type="submit">ログイン</button>
+						<p id="login-error" class="login-error" role="alert" aria-live="polite"></p>
 					</form>
 
 					<div class="signup-area">
@@ -263,11 +274,27 @@
 	</div>
 
 	<script>
+		// DEMO ONLY: Firebase Auth接続後にこのブロックを削除
 		const passwordInput = document.getElementById('password');
 		const showPassword = document.getElementById('show-password');
+		const loginForm = document.getElementById('login-form');
+		const loginError = document.getElementById('login-error');
 
 		showPassword.addEventListener('change', () => {
 			passwordInput.type = showPassword.checked ? 'text' : 'password';
+		});
+
+		loginForm.addEventListener('submit', (event) => {
+			event.preventDefault();
+			loginError.textContent = '';
+
+			if (!loginForm.checkValidity() || document.getElementById('email').value !== 'demo@miuraya.local' || passwordInput.value !== 'miuraya123') {
+				loginError.textContent = 'メールアドレスまたはパスワードが違います';
+				return;
+			}
+
+			sessionStorage.setItem('demoLoggedIn', 'true');
+			window.location.href = 'rank.html';
 		});
 	</script>
 </body>

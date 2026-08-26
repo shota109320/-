@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みうらや誠麺 会員クーポン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
+<style>
+	:root {
+		--wood-dark: #332116;
+		--wood-mid: #624027;
+		--wood-light: #9b693f;
+		--paper: #f7f0df;
+		--paper-deep: #e8d6ac;
+		--red: #a8322a;
+		--red-dark: #76231d;
+		--ink: #2a1c14;
+		--muted: #604b3b;
+		--shadow: rgba(24, 13, 8, 0.25);
+	}
+
+	* { box-sizing: border-box; }
+	html { background: #160d08; }
+
+	body {
+		margin: 0;
+		min-width: 0;
+		overflow-x: hidden;
+		color: var(--ink);
+		font-family: "Noto Sans JP", sans-serif;
+		background:
+			linear-gradient(rgba(25, 13, 7, 0.5), rgba(25, 13, 7, 0.5)),
+			repeating-linear-gradient(90deg, #4d2d1a 0 20px, #5e3821 20px 38px, #432515 38px 54px);
+	}
+
+	a { color: inherit; text-decoration: none; }
+
+	.page {
+		width: min(100%, 980px);
+		min-height: 100vh;
+		margin: 0 auto;
+		background:
+			linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
+			repeating-linear-gradient(0deg, #f6efdf 0 3px, #f1e8d4 3px 7px);
+		box-shadow: 0 0 45px rgba(0,0,0,0.55);
+	}
+
+	.topbar {
+		padding: 28px 22px 24px;
+		text-align: center;
+		background:
+			linear-gradient(rgba(45, 27, 17, 0.12), rgba(45, 27, 17, 0.12)),
+			repeating-linear-gradient(0deg, #3d281b 0 12px, #493020 12px 20px);
+		border-bottom: 5px solid var(--red-dark);
+	}
+
+	.brand {
+		margin: 0;
+		color: #f3e5bf;
+		font-family: "Yuji Boku", "Shippori Mincho", serif;
+		font-size: clamp(2.3rem, 6vw, 4.4rem);
+		font-weight: 400;
+		letter-spacing: 0.12em;
+		text-shadow: 2px 3px 0 #160d08;
+	}
+
+	.title {
+		margin: 10px 0 0;
+		color: #fff7df;
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.5rem, 3vw, 2.3rem);
+		letter-spacing: 0.16em;
+	}
+
+	main { padding: 38px 24px 60px; }
+
+	.guest-content,
+	.member-section {
+		width: min(100%, 700px);
+		margin: 0 auto 28px;
+		border: 8px solid var(--wood-dark);
+		background: rgba(247, 240, 223, 0.95);
+		box-shadow: 0 12px 26px var(--shadow), inset 0 0 0 2px #b89568;
+	}
+
+	.section-heading {
+		margin: 0;
+		padding: 16px 20px 13px;
+		color: #fff1cd;
+		background: linear-gradient(180deg, #b44235, var(--red-dark));
+		border-bottom: 3px solid var(--wood-dark);
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.35rem, 3vw, 1.8rem);
+		letter-spacing: 0.1em;
+		text-align: center;
+	}
+
+	.guest-body { padding: 30px 28px 32px; text-align: center; }
+
+	.guest-body h3 {
+		margin: 0;
+		color: var(--red-dark);
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.5rem, 4vw, 2.2rem);
+		letter-spacing: 0.08em;
+	}
+
+	.guest-body p {
+		margin: 16px 0 0;
+		color: var(--muted);
+		line-height: 1.9;
+	}
+
+	.entry-button,
+	.home-button,
+	.use-button {
+		display: flex;
+		min-height: 56px;
+		align-items: center;
+		justify-content: center;
+		padding: 14px 20px;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #ae3c31, #76231d);
+		border: 3px solid #4b2118;
+		box-shadow: 0 6px 12px var(--shadow);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-align: center;
+	}
+
+	.entry-button { margin-top: 25px; font-size: 1.1rem; }
+	.signup-prompt { margin-top: 26px !important; }
+	.entry-button.secondary,
+	.home-button { background: linear-gradient(180deg, #815633, #54331f); }
+
+	.coupon-body { padding: 22px; }
+
+	.coupon-card {
+		position: relative;
+		padding: 22px 20px 20px;
+		background: linear-gradient(135deg, #fff4d5, #e8d7aa);
+		border: 3px dashed var(--red);
+		box-shadow: inset 0 0 0 2px rgba(255,255,255,0.55), 0 7px 14px var(--shadow);
+	}
+
+	.coupon-card::before,
+	.coupon-card::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		width: 20px;
+		height: 20px;
+		background: var(--paper);
+		border: 3px solid var(--red);
+		border-radius: 50%;
+		transform: translateY(-50%);
+	}
+
+	.coupon-card::before { left: -14px; }
+	.coupon-card::after { right: -14px; }
+
+	.coupon-label,
+	.coupon-value,
+	.coupon-field { display: block; }
+
+	.coupon-label {
+		color: var(--red-dark);
+		font-size: 0.82rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+	}
+
+	.coupon-value {
+		margin-top: 6px;
+		font-family: "Shippori Mincho", serif;
+		font-size: 1.45rem;
+		font-weight: 700;
+	}
+
+	.coupon-details {
+		display: grid;
+		gap: 7px;
+		margin: 18px 0 0;
+		padding-top: 15px;
+		border-top: 1px solid rgba(118, 35, 29, 0.35);
+	}
+
+	.coupon-field {
+		display: grid;
+		grid-template-columns: 6em minmax(0, 1fr);
+		gap: 10px;
+		color: var(--muted);
+		line-height: 1.7;
+	}
+
+	.coupon-field dt { font-weight: 700; }
+	.coupon-field dd { margin: 0; }
+
+	.use-button {
+		width: 100%;
+		margin-top: 20px;
+		cursor: default;
+	}
+
+	.actions { width: min(100%, 700px); margin: 0 auto; }
+	.home-button { width: min(100%, 260px); margin: 0 auto; }
+
+	@media (max-width: 600px) {
+		main { padding: 24px 14px 42px; }
+		.guest-body { padding: 24px 16px 26px; }
+		.coupon-body { padding: 16px; }
+	}
+
+	@media (max-width: 390px) {
+		.topbar { padding-left: 14px; padding-right: 14px; }
+		.section-heading { padding-left: 12px; padding-right: 12px; }
+		.coupon-field { grid-template-columns: 5.3em minmax(0, 1fr); }
+		.home-button { width: 100%; }
+	}
+</style>
+</head>
+<body>
+	<div class="page">
+		<header class="topbar">
+			<h1 class="brand">みうらや誠麺</h1>
+			<p class="title">会員クーポン</p>
+		</header>
+
+		<main>
+			<section id="guest-content" class="guest-content" aria-labelledby="guest-heading">
+				<h2 class="section-heading" id="guest-heading">会員限定クーポン</h2>
+				<div class="guest-body">
+					<h3>クーポンを確認するには<br>ログインしてください。</h3>
+					<a class="entry-button" href="login.html">ログイン</a>
+					<p class="signup-prompt">まだ会員登録がお済みでない方</p>
+					<a class="entry-button secondary" href="signup.html">新規会員登録</a>
+				</div>
+			</section>
+
+			<div id="member-coupon-content" hidden>
+				<!-- TODO: Firebaseログイン後に表示 -->
+				<section class="member-section" aria-labelledby="coupon-heading">
+					<h2 class="section-heading" id="coupon-heading">あなたのクーポン</h2>
+					<div class="coupon-body">
+						<!-- 仮表示：後でデータベースからクーポン情報を取得 -->
+						<article class="coupon-card">
+							<span class="coupon-label">クーポン名</span>
+							<strong class="coupon-value">会員限定クーポン</strong>
+							<dl class="coupon-details">
+								<div class="coupon-field"><dt>特典内容</dt><dd>特典内容は準備中です</dd></div>
+								<div class="coupon-field"><dt>対象ランク</dt><dd>確認中</dd></div>
+								<div class="coupon-field"><dt>有効期限</dt><dd>確認中</dd></div>
+							</dl>
+							<!-- TODO: 後でクーポン利用処理を実装 -->
+							<button class="use-button" type="button">利用する</button>
+						</article>
+					</div>
+				</section>
+			</div>
+
+			<div class="actions">
+				<a class="home-button" href="rank.html">会員ランクを確認する</a>
+				<a class="home-button" href="index.html">トップページへ戻る</a>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

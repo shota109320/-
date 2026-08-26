@@ -25,6 +25,7 @@
 	}
 
 	* { box-sizing: border-box; }
+	[hidden] { display: none !important; }
 
 	html { background: #160d08; }
 
@@ -278,6 +279,21 @@
 	.home-wrap { display: flex; justify-content: center; }
 	.home-button { background: linear-gradient(180deg, #815633, #54331f); min-width: 240px; }
 
+	.logout-wrap { display: flex; justify-content: center; margin: 24px 0 28px; }
+	.logout-button {
+		min-width: 180px;
+		min-height: 50px;
+		padding: 12px 20px;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #6f4030, #3e241a);
+		border: 3px solid var(--wood-dark);
+		box-shadow: 0 5px 10px var(--shadow);
+		font: inherit;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		cursor: pointer;
+	}
+
 	.member-entry {
 		max-width: 620px;
 		margin: 0 auto 30px;
@@ -352,6 +368,7 @@
 		</header>
 
 		<main>
+			<!-- DEMO ONLY: Firebase接続後に認証状態の表示切替へ置き換える -->
 			<section class="member-entry" aria-labelledby="member-entry-heading">
 				<h2 id="member-entry-heading">みうらや誠麺 会員サービス</h2>
 				<p>ご来店回数に応じてランクアップ<br>会員ランクに応じた特典をご用意</p>
@@ -434,10 +451,31 @@
 			</section>
 				</div>
 
+				<div class="logout-wrap">
+					<button id="logout-button" class="logout-button" type="button">ログアウト</button>
+				</div>
+
 			<div class="home-wrap">
 				<a class="home-button" href="index.html">トップページへ戻る</a>
 			</div>
 		</main>
 	</div>
+
+	<script>
+		// DEMO ONLY: Firebase接続後にこのブロックを削除
+		const isDemoLoggedIn = sessionStorage.getItem('demoLoggedIn') === 'true';
+		const memberEntry = document.querySelector('.member-entry');
+		const memberContent = document.getElementById('member-content');
+		const logoutWrap = document.querySelector('.logout-wrap');
+
+		memberEntry.hidden = isDemoLoggedIn;
+		memberContent.hidden = !isDemoLoggedIn;
+		logoutWrap.hidden = !isDemoLoggedIn;
+
+		document.getElementById('logout-button').addEventListener('click', () => {
+			sessionStorage.removeItem('demoLoggedIn');
+			window.location.reload();
+		});
+	</script>
 </body>
 </html>
