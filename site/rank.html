@@ -278,12 +278,60 @@
 	.home-wrap { display: flex; justify-content: center; }
 	.home-button { background: linear-gradient(180deg, #815633, #54331f); min-width: 240px; }
 
+	.member-entry {
+		max-width: 620px;
+		margin: 0 auto 30px;
+		padding: 30px 28px 32px;
+		text-align: center;
+		border: 8px solid var(--wood-dark);
+		background: rgba(247, 240, 223, 0.95);
+		box-shadow: 0 12px 26px var(--shadow), inset 0 0 0 2px #b89568;
+	}
+
+	.member-entry h2 {
+		margin: 0;
+		color: var(--red-dark);
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.6rem, 4vw, 2.2rem);
+		letter-spacing: 0.1em;
+	}
+
+	.member-entry p {
+		margin: 18px 0 0;
+		color: var(--muted);
+		line-height: 2;
+	}
+
+	.entry-points {
+		display: grid;
+		gap: 14px;
+		margin-top: 28px;
+	}
+
+	.entry-button {
+		display: flex;
+		min-height: 58px;
+		align-items: center;
+		justify-content: center;
+		padding: 14px 20px;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #ae3c31, #76231d);
+		border: 3px solid #4b2118;
+		box-shadow: 0 6px 12px var(--shadow);
+		font-size: 1.1rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+	}
+
+	.entry-button.secondary { background: linear-gradient(180deg, #815633, #54331f); }
+
 	@media (max-width: 600px) {
 		main { padding: 22px 14px 42px; }
 		.section-body { padding: 16px; }
 		.stats { grid-template-columns: 1fr; }
 		.coupon { align-items: stretch; flex-direction: column; gap: 14px; }
 		.coupon-button { width: 100%; }
+		.member-entry { padding-left: 16px; padding-right: 16px; }
 	}
 
 	@media (max-width: 390px) {
@@ -304,6 +352,21 @@
 		</header>
 
 		<main>
+			<section class="member-entry" aria-labelledby="member-entry-heading">
+				<h2 id="member-entry-heading">みうらや誠麺 会員サービス</h2>
+				<p>ご来店回数に応じてランクアップ<br>会員ランクに応じた特典をご用意</p>
+
+				<div class="entry-points">
+					<a class="entry-button" href="login.html">ログイン</a>
+					<div>
+						<p>初めての方はこちら</p>
+						<a class="entry-button secondary" href="signup.html">新規会員登録</a>
+					</div>
+				</div>
+			</section>
+
+			<div id="member-content" hidden>
+				<!-- TODO: Firebaseログイン後に表示する会員情報 -->
 			<section class="section">
 				<h2 class="section-heading">現在のランク</h2>
 				<div class="section-body">
@@ -369,6 +432,7 @@
 					</div>
 				</div>
 			</section>
+				</div>
 
 			<div class="home-wrap">
 				<a class="home-button" href="index.html">トップページへ戻る</a>

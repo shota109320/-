@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>みうらや誠麺 会員ログイン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
+<style>
+	:root {
+		--wood-dark: #332116;
+		--wood-mid: #624027;
+		--wood-light: #9b693f;
+		--paper: #f7f0df;
+		--paper-deep: #e8d6ac;
+		--red: #a8322a;
+		--red-dark: #76231d;
+		--ink: #2a1c14;
+		--muted: #604b3b;
+		--shadow: rgba(24, 13, 8, 0.25);
+	}
+
+	* { box-sizing: border-box; }
+	html { background: #160d08; }
+
+	body {
+		margin: 0;
+		min-width: 0;
+		overflow-x: hidden;
+		color: var(--ink);
+		font-family: "Noto Sans JP", sans-serif;
+		background:
+			linear-gradient(rgba(25, 13, 7, 0.5), rgba(25, 13, 7, 0.5)),
+			repeating-linear-gradient(90deg, #4d2d1a 0 20px, #5e3821 20px 38px, #432515 38px 54px);
+	}
+
+	a { color: inherit; text-decoration: none; }
+
+	.page {
+		width: min(100%, 980px);
+		min-height: 100vh;
+		margin: 0 auto;
+		background:
+			linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
+			repeating-linear-gradient(0deg, #f6efdf 0 3px, #f1e8d4 3px 7px);
+		box-shadow: 0 0 45px rgba(0,0,0,0.55);
+	}
+
+	.topbar {
+		padding: 28px 22px 24px;
+		text-align: center;
+		background:
+			linear-gradient(rgba(45, 27, 17, 0.12), rgba(45, 27, 17, 0.12)),
+			repeating-linear-gradient(0deg, #3d281b 0 12px, #493020 12px 20px);
+		border-bottom: 5px solid var(--red-dark);
+	}
+
+	.brand {
+		margin: 0;
+		color: #f3e5bf;
+		font-family: "Yuji Boku", "Shippori Mincho", serif;
+		font-size: clamp(2.3rem, 6vw, 4.4rem);
+		font-weight: 400;
+		letter-spacing: 0.12em;
+		text-shadow: 2px 3px 0 #160d08;
+	}
+
+	.title {
+		margin: 10px 0 0;
+		color: #fff7df;
+		font-family: "Shippori Mincho", serif;
+		font-size: clamp(1.5rem, 3vw, 2.3rem);
+		letter-spacing: 0.16em;
+	}
+
+	main { padding: 38px 24px 60px; }
+
+	.login-frame {
+		width: min(100%, 560px);
+		margin: 0 auto;
+		border: 8px solid var(--wood-dark);
+		background: rgba(247, 240, 223, 0.95);
+		box-shadow: 0 12px 26px var(--shadow), inset 0 0 0 2px #b89568;
+	}
+
+	.frame-heading {
+		margin: 0;
+		padding: 16px 20px 13px;
+		color: #fff1cd;
+		background: linear-gradient(180deg, #b44235, var(--red-dark));
+		border-bottom: 3px solid var(--wood-dark);
+		font-family: "Shippori Mincho", serif;
+		font-size: 1.55rem;
+		letter-spacing: 0.1em;
+		text-align: center;
+	}
+
+	.form-body { padding: 26px 28px 30px; }
+
+	.intro {
+		margin: 0 0 24px;
+		color: var(--muted);
+		line-height: 1.8;
+		text-align: center;
+	}
+
+	.field { margin-bottom: 20px; }
+
+	.field label {
+		display: block;
+		margin-bottom: 8px;
+		color: var(--red-dark);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+	}
+
+	.field input {
+		width: 100%;
+		min-height: 52px;
+		padding: 12px 14px;
+		color: var(--ink);
+		background: #fffdf8;
+		border: 3px solid var(--wood-light);
+		border-radius: 3px;
+		font: inherit;
+		font-size: 1rem;
+	}
+
+	.field input:focus {
+		outline: 3px solid rgba(168, 50, 42, 0.3);
+		border-color: var(--red);
+	}
+
+	.password-toggle {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		margin-top: -9px;
+		color: var(--muted);
+		font-size: 0.92rem;
+		cursor: pointer;
+	}
+
+	.password-toggle input {
+		width: 18px;
+		height: 18px;
+		accent-color: var(--red);
+	}
+
+	.login-button,
+	.home-button,
+	.signup-link {
+		display: inline-flex;
+		min-height: 54px;
+		align-items: center;
+		justify-content: center;
+		padding: 13px 20px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-align: center;
+	}
+
+	.login-button {
+		width: 100%;
+		margin-top: 25px;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #ae3c31, #76231d);
+		border: 3px solid #4b2118;
+		box-shadow: 0 6px 12px var(--shadow);
+		cursor: pointer;
+		font: inherit;
+	}
+
+	.signup-area {
+		margin-top: 24px;
+		padding-top: 20px;
+		border-top: 2px solid var(--paper-deep);
+		text-align: center;
+	}
+
+	.signup-area p { margin: 0 0 9px; color: var(--muted); }
+
+	.signup-link {
+		width: 100%;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #815633, #54331f);
+		border: 3px solid #342016;
+		box-shadow: 0 6px 12px var(--shadow);
+	}
+
+	.signup-link:focus-visible {
+		outline: 3px solid rgba(168, 50, 42, 0.42);
+		outline-offset: 3px;
+	}
+
+	.home-wrap { display: flex; justify-content: center; margin-top: 28px; }
+
+	.home-button {
+		min-width: 240px;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #815633, #54331f);
+		border: 3px solid #342016;
+		box-shadow: 0 6px 12px var(--shadow);
+	}
+
+	@media (max-width: 600px) {
+		main { padding: 24px 14px 42px; }
+		.form-body { padding: 22px 16px 24px; }
+	}
+
+	@media (max-width: 390px) {
+		.topbar { padding-left: 14px; padding-right: 14px; }
+		.frame-heading { padding-left: 12px; padding-right: 12px; }
+		.home-button { width: 100%; min-width: 0; }
+	}
+</style>
+</head>
+<body>
+	<div class="page">
+		<header class="topbar">
+			<h1 class="brand">みうらや誠麺</h1>
+			<p class="title">会員ログイン</p>
+		</header>
+
+		<main>
+			<section class="login-frame" aria-labelledby="login-heading">
+				<h2 class="frame-heading" id="login-heading">会員ログイン</h2>
+				<div class="form-body">
+					<p class="intro">会員ランクをご確認いただくためのログイン画面です。</p>
+
+					<form id="login-form">
+						<div class="field">
+							<label for="email">メールアドレス</label>
+							<input id="email" name="email" type="email" autocomplete="email" placeholder="example@email.com">
+						</div>
+
+						<div class="field">
+							<label for="password">パスワード</label>
+							<input id="password" name="password" type="password" autocomplete="current-password">
+						</div>
+
+						<label class="password-toggle" for="show-password">
+							<input id="show-password" type="checkbox">
+							<span>パスワードを表示</span>
+						</label>
+
+						<!-- TODO: Supabase Authによるログイン処理を後で実装 -->
+						<button class="login-button" type="button">ログイン</button>
+					</form>
+
+					<div class="signup-area">
+						<p>初めての方はこちら</p>
+						<a class="signup-link" href="signup.html">新規会員登録</a>
+					</div>
+				</div>
+			</section>
+
+			<div class="home-wrap">
+				<a class="home-button" href="index.html">トップページへ戻る</a>
+			</div>
+		</main>
+	</div>
+
+	<script>
+		const passwordInput = document.getElementById('password');
+		const showPassword = document.getElementById('show-password');
+
+		showPassword.addEventListener('change', () => {
+			passwordInput.type = showPassword.checked ? 'text' : 'password';
+		});
+	</script>
+</body>
+</html>
