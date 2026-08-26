@@ -165,9 +165,93 @@
   }
 
   .recommend-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
     gap: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .recommend-grid::-webkit-scrollbar,
+  .menu-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .recommend-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .recommend-dots,
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0 2px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 1px solid var(--seal-red-deep);
+    border-radius: 50%;
+    background: transparent;
+  }
+
+  .carousel-dot.is-active {
+    background: var(--seal-red);
+  }
+
+  .carousel-shell {
+    position: relative;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0 42px;
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    border: 2px solid var(--wood-light);
+    border-radius: 50%;
+    color: #fff3d1;
+    background: var(--wood-dark);
+    box-shadow: 0 5px 10px rgba(35,18,13,0.25);
+    font-size: 1.8rem;
+    line-height: 1;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .carousel-arrow.prev { left: 0; }
+  .carousel-arrow.next { right: 0; }
+
+  .menu-grid {
+    display: flex;
+    gap: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .menu-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
   }
 
   .recommend-card {
@@ -286,13 +370,29 @@
   }
 
   .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     gap: 16px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .carousel-dots {
-    display: none;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0 2px;
+  }
+
+  .recommend-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 0 2px;
   }
 
   .menu-card {
@@ -386,6 +486,30 @@
     box-shadow: 0 10px 20px rgba(30, 18, 14, 0.12);
     max-width: 620px;
     margin: 0 auto;
+  }
+
+  .seasonal-grid {
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .seasonal-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .seasonal-grid .seasonal-card {
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: center;
+  }
+
+  .seasonal-carousel {
+    max-width: 850px;
   }
 
   .seasonal-card .thumb {
@@ -611,6 +735,55 @@
       grid-template-columns: 1fr;
     }
 
+    #recommend .recommend-wrap::before {
+      content: "← 左右にスワイプ →";
+      display: block;
+      margin: -4px 0 8px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-align: right;
+    }
+
+    .recommend-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      width: 100%;
+      padding: 4px 0 14px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overscroll-behavior-x: contain;
+      touch-action: pan-x;
+    }
+
+    .seasonal-grid {
+      width: 100%;
+      scroll-behavior: smooth;
+      touch-action: pan-x;
+    }
+
+    .recommend-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .recommend-card {
+      flex: 0 0 100%;
+      min-width: 100%;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .recommend-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 4px 0 14px;
+    }
+
     .menu-grid {
       display: flex;
       flex-wrap: nowrap;
@@ -722,7 +895,9 @@
         </div>
 
         <div class="recommend-wrap">
-          <div class="recommend-grid">
+          <div class="carousel-shell">
+            <button class="carousel-arrow prev" type="button" aria-label="前のおすすめ商品">‹</button>
+            <div class="recommend-grid" id="recommend-slider">
             <article class="recommend-card">
               <div class="thumb">
                 <img src="static/images/menu/66610_0.jpg" alt="竹岡式らーめん">
@@ -783,6 +958,11 @@
               </div>
             </article>
 
+            </div>
+            <button class="carousel-arrow next" type="button" aria-label="次のおすすめ商品">›</button>
+            <div class="recommend-dots" aria-label="おすすめ商品の位置">
+              <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            </div>
           </div>
         </div>
       </section>
@@ -807,7 +987,9 @@
       <section class="section menu-section">
         <div id="category-takokashi" class="category-block">
           <h3 class="category-title">竹岡式</h3>
-          <div class="menu-grid">
+          <div class="carousel-shell">
+            <button class="carousel-arrow prev" type="button" aria-label="竹岡式の前の商品">‹</button>
+            <div class="menu-grid">
             <article class="menu-card">
               <div class="image">
                 <img src="static/images/menu/66610_0.jpg" alt="竹岡式らーめん" style="object-position:center 55%;">
@@ -841,14 +1023,18 @@
               </div>
             </article>
           </div>
-          <div class="carousel-dots" aria-label="竹岡式の商品位置">
-            <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            <button class="carousel-arrow next" type="button" aria-label="竹岡式の次の商品">›</button>
+            <div class="carousel-dots" aria-label="竹岡式の商品位置">
+              <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            </div>
           </div>
         </div>
 
         <div id="category-shoyu" class="category-block">
           <h3 class="category-title">味噌・醤油</h3>
-          <div class="menu-grid">
+          <div class="carousel-shell">
+            <button class="carousel-arrow prev" type="button" aria-label="味噌・醤油の前の商品">‹</button>
+            <div class="menu-grid">
             <article class="menu-card">
               <div class="image">
                 <img src="static/images/menu/66614_0.jpg" alt="背脂入り味噌らーめん" style="object-position:center 52%;">
@@ -884,14 +1070,18 @@
               </div>
             </article>
           </div>
-          <div class="carousel-dots" aria-label="味噌・醤油の商品位置">
-            <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            <button class="carousel-arrow next" type="button" aria-label="味噌・醤油の次の商品">›</button>
+            <div class="carousel-dots" aria-label="味噌・醤油の商品位置">
+              <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            </div>
           </div>
         </div>
 
         <div id="category-tonkotsu" class="category-block">
           <h3 class="category-title">その他</h3>
-          <div class="menu-grid">
+          <div class="carousel-shell">
+            <button class="carousel-arrow prev" type="button" aria-label="その他の前の商品">‹</button>
+            <div class="menu-grid">
             <article class="menu-card no-image-card">
               <div class="info">
                 <h3>スタミナらーめん</h3>
@@ -927,14 +1117,18 @@
               </div>
             </article>
           </div>
-          <div class="carousel-dots" aria-label="その他の商品位置">
-            <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            <button class="carousel-arrow next" type="button" aria-label="その他の次の商品">›</button>
+            <div class="carousel-dots" aria-label="その他の商品位置">
+              <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            </div>
           </div>
         </div>
 
         <div id="category-set" class="category-block">
           <h3 class="category-title">サイドメニュー・トッピング</h3>
-          <div class="menu-grid">
+          <div class="carousel-shell">
+            <button class="carousel-arrow prev" type="button" aria-label="サイドメニュー・トッピングの前の商品">‹</button>
+            <div class="menu-grid">
             <article class="menu-card no-image-card">
               <div class="info">
                 <h3>麺大盛</h3>
@@ -959,8 +1153,10 @@
               </div>
             </article>
           </div>
-          <div class="carousel-dots" aria-label="サイドメニュー・トッピングの商品位置">
-            <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            <button class="carousel-arrow next" type="button" aria-label="サイドメニュー・トッピングの次の商品">›</button>
+            <div class="carousel-dots" aria-label="サイドメニュー・トッピングの商品位置">
+              <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
+            </div>
           </div>
         </div>
       </section>
@@ -972,17 +1168,24 @@
         </div>
 
         <div class="recommend-wrap">
-          <article class="seasonal-card">
-            <div class="thumb">
-              <img src="static/images/menu/66615_0.jpg" alt="冷やし担々麺">
+          <div class="carousel-shell">
+            <div class="seasonal-grid">
+              <article class="seasonal-card">
+                <div class="thumb">
+                  <img src="static/images/menu/66615_0.jpg" alt="冷やし担々麺">
+                </div>
+                <div class="body">
+                  <div class="seasonal-badge">期間限定</div>
+                  <h3>冷やし担々麺</h3>
+                  <p class="seasonal-price">価格は店頭にてご確認ください</p>
+                  <p>夏季限定の冷やし担々麺。さっぱりとした食感と、担々の深い香りが特徴です。</p>
+                </div>
+              </article>
             </div>
-            <div class="body">
-              <div class="seasonal-badge">期間限定</div>
-              <h3>冷やし担々麺</h3>
-              <p class="seasonal-price">価格は店頭にてご確認ください</p>
-              <p>夏季限定の冷やし担々麺。さっぱりとした食感と、担々の深い香りが特徴です。</p>
+            <div class="carousel-dots" aria-label="期間限定商品の位置">
+              <span class="carousel-dot is-active"></span>
             </div>
-          </article>
+          </div>
         </div>
       </section>
 
@@ -1090,6 +1293,34 @@
         const activeIndex = Math.min(dots.length - 1, Math.round(slider.scrollLeft / step));
         dots.forEach((dot, index) => dot.classList.toggle('is-active', index === activeIndex));
       }, { passive: true });
+    });
+
+    const recommendSlider = document.getElementById('recommend-slider');
+    const recommendDots = document.querySelectorAll('.recommend-dots .carousel-dot');
+    recommendSlider.addEventListener('scroll', () => {
+      const card = recommendSlider.querySelector('.recommend-card');
+      const gap = parseFloat(getComputedStyle(recommendSlider).gap) || 0;
+      const step = card.getBoundingClientRect().width + gap;
+      const activeIndex = Math.min(recommendDots.length - 1, Math.round(recommendSlider.scrollLeft / step));
+      recommendDots.forEach((dot, index) => dot.classList.toggle('is-active', index === activeIndex));
+    }, { passive: true });
+
+    document.querySelectorAll('.carousel-shell').forEach(shell => {
+      const slider = shell.querySelector('.recommend-grid, .menu-grid, .seasonal-grid');
+      const previousButton = shell.querySelector('.carousel-arrow.prev');
+      const nextButton = shell.querySelector('.carousel-arrow.next');
+      if (!slider || (!previousButton && !nextButton)) return;
+
+      const move = direction => {
+        const card = slider.querySelector('.recommend-card, .menu-card, .seasonal-card');
+        const gap = parseFloat(getComputedStyle(slider).gap) || 0;
+        const step = card.getBoundingClientRect().width + gap;
+        const index = Math.round(slider.scrollLeft / step) + direction;
+        slider.scrollTo({ left: Math.max(0, index * step), behavior: 'smooth' });
+      };
+
+      previousButton?.addEventListener('click', () => move(-1));
+      nextButton?.addEventListener('click', () => move(1));
     });
   </script>
 </body>
