@@ -1,350 +1,472 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>麺屋 遠近 -counter bg-</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500&family=Dela+Gothic+One&family=Yuji+Syuku&family=Yuji+Boku&family=Klee+One:wght@600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --wood-dark:#3b2415;
-    --wood-mid:#6b4226;
-    --counter:#a9702f;
-    --counter-dark:#8a5820;
-    --tag-cream:#efe3c4;
-    --tag-shadow:#c9b98c;
-    --seal-red:#a63a2e;
-    --ink:#2b2018;
-    --washi:#f7f1e2;
-    --wall:#fbf7ee;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:#1c1109;
-    font-family:"Noto Sans JP", sans-serif;
-    color:var(--ink);
-    min-height:100vh;
-    padding-bottom:60px;
-  }
-  .page{
-    max-width:900px;
-    margin:0 auto;
-    box-shadow:0 0 50px rgba(0,0,0,0.6);
-  }
-
-  /* ---- top red valance pattern ---- */
-  .valance{
-    height:38px;
-    background:var(--seal-red);
-    display:flex;
-    border-bottom:3px solid #7a251c;
-  }
-  .valance .tile{
-    flex:1;
-    display:flex;align-items:center;justify-content:center;
-    border-right:1px solid rgba(255,255,255,0.25);
-  }
-  .valance .tile svg{ width:20px;height:20px; }
-
-  header{
-    padding:16px 20px 22px;
-    display:flex;
-    justify-content:center;
-  }
-  .board{
-    position:relative;
-    width:100%;
-    max-width:820px;
-    display:flex;
-    align-items:center;
-    gap:16px;
-    padding:14px 26px;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='120'><rect width='300' height='120' fill='%233a2c22'/><path d='M0 15 Q60 5 120 18 Q180 8 240 20 Q270 14 300 22' stroke='%232a1f18' stroke-width='4' fill='none' opacity='0.6'/><path d='M0 35 Q70 25 140 38 Q200 28 260 40 Q280 34 300 42' stroke='%234a382c' stroke-width='4' fill='none' opacity='0.6'/><path d='M0 55 Q60 48 130 58 Q190 50 250 60 Q275 55 300 62' stroke='%232a1f18' stroke-width='4' fill='none' opacity='0.6'/><path d='M0 75 Q65 68 135 78 Q195 70 255 80 Q278 75 300 82' stroke='%234a382c' stroke-width='4' fill='none' opacity='0.6'/><path d='M0 95 Q60 88 125 98 Q185 90 245 100 Q272 95 300 102' stroke='%232a1f18' stroke-width='4' fill='none' opacity='0.6'/></svg>");
-    background-size:cover;
-    border:3px solid #9a9080;
-    border-radius:3px;
-    box-shadow:0 6px 14px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.4);
-  }
-  .board::before{
-    content:"";
-    position:absolute;
-    top:5px;left:5px;right:5px;bottom:5px;
-    border:1px solid rgba(180,170,150,0.35);
-    pointer-events:none;
-  }
-  .board .emblem{
-    flex-shrink:0;
-    width:46px;height:46px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #c0453a, #7a251c);
-    border:3px solid #e8e0c8;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 2px 6px rgba(0,0,0,0.5);
-  }
-  .board .emblem span{
-    font-family:"Yuji Boku", serif;
-    color:#f2e6c8;
-    font-size:15px;
-  }
-  .board h1{
-    font-family:"Yuji Boku", "Shippori Mincho", serif;
-    font-weight:400;
-    font-size:30px;
-    letter-spacing:0.06em;
-    margin:0;
-    color:#f2e8ce;
-    text-shadow:
-      1px 1px 0 #1a120c,
-      -1px 1px 1px rgba(0,0,0,0.5),
-      0 2px 3px rgba(0,0,0,0.6),
-      0 0 10px rgba(255,240,200,0.15);
-  }
-  .board h1 .name-kana{
-    margin-right:0.05em;
-  }
-  .board .legs{
-    position:absolute;
-    bottom:-14px;left:0;right:0;
-    display:flex;
-    justify-content:space-around;
-    padding:0 30px;
-  }
-  .board .legs svg{ display:block; }
-
-  /* ---- wall + hanging tags ---- */
-  .wall{
-    position:relative;
-    min-height:620px;
-    background-image:
-      linear-gradient(180deg, rgba(20,12,6,0.5) 0%, rgba(20,12,6,0.2) 40%, rgba(20,12,6,0.08) 70%),
-      url("static/images/store.jpg");
-    background-size:cover;
-    background-position:center 40%;
-    padding:26px 24px 8px;
-  }
-  .beam{
-    height:10px;
-    background:linear-gradient(var(--wood-mid), var(--wood-dark));
-    box-shadow:0 3px 4px rgba(0,0,0,0.35);
-    margin-bottom:0;
-  }
-
-  .signboard{
-    display:flex;
-    justify-content:flex-start;
-    gap:18px;
-    padding:26px 20px 30px;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    max-width:640px;
-    margin:0;
-  }
-
-  @media (min-width:700px){
-    .signboard{
-      max-width:100%;
-      justify-content:flex-start;
-      padding:44px 32px 46px;
-      gap:22px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>麺屋 遠近 -counter bg-</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500&family=Dela+Gothic+One&family=Yuji+Syuku&family=Yuji+Boku&family=Klee+One:wght@600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --wood-dark: #3b2415;
+      --wood-mid: #6b4226;
+      --counter: #a9702f;
+      --counter-dark: #8a5820;
+      --tag-cream: #efe3c4;
+      --tag-shadow: #c9b98c;
+      --seal-red: #a63a2e;
+      --ink: #2b2018;
+      --washi: #f7f1e2;
+      --wall: #fbf7ee;
     }
-    .tag{ width:150px; padding:40px 10px 28px; }
-    .tag-text{ font-size:38px; }
-    .tag .hole{ width:13px; height:13px; margin-bottom:16px; }
-    .wall{ min-height:680px; }
-  }
 
-  .tag{
-    position:relative;
-    display:block;
-    width:60px;
-    background:linear-gradient(var(--tag-cream), #e0cd9a);
-    border:1px solid var(--tag-shadow);
-    border-radius:1px;
-    padding:20px 5px 14px;
-    box-shadow:2px 6px 10px rgba(0,0,0,0.4), inset 0 0 18px rgba(120,90,40,0.18);
-    cursor:pointer;
-    transform-origin:top center;
-    transition:transform 0.25s ease, box-shadow 0.25s ease;
-    animation:sway 4.5s ease-in-out infinite;
-    animation-delay:calc(var(--i) * -0.6s);
-    overflow:hidden;
-  }
-  .tag,
-  .tag:link,
-  .tag:visited{
-    color:inherit;
-    text-decoration:none;
-  }
-  .tag:focus{ outline:none; }
-  .tag:focus-visible{
-    outline:2px solid var(--seal-red);
-    outline-offset:3px;
-  }
-  .tag::before{
-    content:"";position:absolute;top:-16px;left:50%;transform:translateX(-50%);
-    width:2px;height:18px;background:var(--wood-dark);
-    box-shadow:0 2px 3px rgba(0,0,0,0.5);
-  }
-  .tag::after{
-    content:"";position:absolute;top:5px;left:50%;transform:translateX(-50%);
-    width:6px;height:6px;border-radius:50%;background:var(--seal-red);
-    box-shadow:0 1px 2px rgba(0,0,0,0.5);
-  }
-  .tag .grain{
-    position:absolute;inset:0;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    opacity:0.18;
-    mix-blend-mode:multiply;
-    pointer-events:none;
-  }
-  .tag .stain{
-    position:absolute;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(120,80,30,0.35), transparent 70%);
-    pointer-events:none;
-  }
-  .tag:hover{ transform:rotate(-2deg) translateY(-4px); box-shadow:3px 10px 16px rgba(0,0,0,0.45); }
-  @keyframes sway{ 0%,100%{transform:rotate(-1.2deg);} 50%{transform:rotate(1.2deg);} }
-  .tag:hover{ animation-play-state:paused; }
-  @keyframes wiggle{
-    0%{ transform:rotate(0deg); }
-    20%{ transform:rotate(-8deg); }
-    40%{ transform:rotate(6deg); }
-    60%{ transform:rotate(-4deg); }
-    80%{ transform:rotate(2deg); }
-    100%{ transform:rotate(0deg); }
-  }
-  .tag.wiggle{ animation:wiggle 0.45s ease; }
-  .tag-text{
-    position:relative;
-    z-index:1;
-    font-family:"Yuji Boku", "Shippori Mincho", serif;
-    font-size:16px;font-weight:400;
-    writing-mode:vertical-rl;text-orientation:upright;letter-spacing:0.06em;
-    color:var(--ink);display:block;margin:0 auto;
-    text-shadow:0 1px 0 rgba(255,255,255,0.3);
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  /* ---- wood tag variant (light plank, vertical grain, punched hole) ---- */
-  .tag.wood{
-    padding-top:12px;
-    background:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='220'><rect width='90' height='220' fill='%23eaa955'/><path d='M8 0 Q13 45 7 90 Q3 130 11 175 Q15 200 9 220' stroke='%23c9822f' stroke-width='2.5' fill='none' opacity='0.55'/><path d='M20 0 Q24 50 18 95 Q15 140 22 180 Q26 205 20 220' stroke='%23d8933a' stroke-width='2' fill='none' opacity='0.45'/><path d='M32 0 Q37 40 30 85 Q27 130 34 170 Q38 200 32 220' stroke='%23b8722a' stroke-width='2.5' fill='none' opacity='0.5'/><path d='M44 0 Q49 55 42 100 Q39 145 46 185 Q50 205 44 220' stroke='%23d8933a' stroke-width='2' fill='none' opacity='0.4'/><path d='M56 0 Q61 45 54 90 Q51 135 58 175 Q62 200 56 220' stroke='%23c9822f' stroke-width='2.5' fill='none' opacity='0.5'/><path d='M68 0 Q73 50 66 95 Q63 140 70 180 Q74 205 68 220' stroke='%23b8722a' stroke-width='2' fill='none' opacity='0.45'/><path d='M80 0 Q85 40 78 85 Q75 130 82 170 Q86 200 80 220' stroke='%23d8933a' stroke-width='2.5' fill='none' opacity='0.4'/><ellipse cx='36' cy='120' rx='4' ry='7' fill='%23a8641f' opacity='0.5'/></svg>");
-    background-size:100% 100%;
-    border:1px solid #b8722a;
-    border-radius:5px;
-    box-shadow:2px 6px 10px rgba(0,0,0,0.5);
-  }
-  .tag.wood::before{ display:none; }
-  .tag.wood::after{ display:none; }
-  .tag.wood .hole{
-    width:9px;height:9px;border-radius:50%;
-    margin:0 auto 10px;
-    background:radial-gradient(circle at 35% 35%, #4a2f10, #1c1006 70%);
-    box-shadow:0 1px 2px rgba(255,255,255,0.3) inset, 0 2px 3px rgba(0,0,0,0.5);
-  }
-  .tag.wood .grain{ display:none; }
-  .tag.wood .stain{ display:none; }
-  .tag.wood .tag-text{
-    color:#4a2f10;
-    text-shadow:0 1px 0 rgba(255,255,255,0.25);
-  }
+    body {
+      margin: 0;
+      background: #ffffff;
+      font-family: "Noto Sans JP", sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      padding-bottom: 60px;
+      overflow-x: hidden;
+    }
 
-  /* ---- illustrated counter along the bottom of the wall ---- */
-  .counter-illust{
-    display:flex;
-    align-items:flex-end;
-    gap:18px;
-    padding:0 26px;
-    height:70px;
-  }
-  .counter-illust svg{ display:block; }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+      position: relative;
+      background: #ffffff;
+    }
 
-  .counter-bar{
-    height:30px;
-    background:linear-gradient(var(--counter), var(--counter-dark));
-    border-top:3px solid #c98a3f;
-    box-shadow:0 6px 14px rgba(0,0,0,0.4);
-  }
+    /* ---- Header Section ---- */
+    header {
+      position: relative;
+      width: 100vw;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column; /* 看板を上に、画像を下に並べる */
+      align-items: center;
+      box-sizing: border-box;
+      /* 背景色をなくして透明（白）にする */
+      background: transparent; 
+    }
 
-</style>
+    /* 一番上に配置する看板エリア */
+    .header-board-area {
+      width: 100%;
+      max-width: 900px; /* 看板はコンテンツ幅に合わせる */
+      display: flex;
+      justify-content: center;
+      padding: 30px 20px 20px;
+      z-index: 2;
+    }
+
+    .board {
+      position: relative;
+      width: 100%;
+      max-width: 820px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 26px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='120'><rect width='300' height='120' fill='%233a2c22'/><path d='M0 15 Q60 5 120 18 Q180 8 240 20 Q270 14 300 22' stroke='%232a1f18' stroke-width='4' fill='none' opacity='0.6'/><path d='M0 35 Q70 25 140 38 Q200 28 260 40 Q280 34 300 42' stroke='%234a382c' stroke-width='4' fill='none' opacity='0.6'/><path d='M0 55 Q60 48 130 58 Q190 50 250 60 Q275 55 300 62' stroke='%232a1f18' stroke-width='4' fill='none' opacity='0.6'/><path d='M0 75 Q65 68 135 78 Q195 70 255 80 Q278 75 300 82' stroke='%234a382c' stroke-width='4' fill='none' opacity='0.6'/><path d='M0 95 Q60 88 125 98 Q185 90 245 100 Q272 95 300 102' stroke='%232a1f18' stroke-width='4' fill='none' opacity='0.6'/></svg>");
+      background-size: cover;
+      border: 3px solid #9a9080;
+      border-radius: 3px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .board::before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px solid rgba(180, 170, 150, 0.35);
+      pointer-events: none;
+    }
+
+    .board .emblem {
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #c0453a, #7a251c);
+      border: 3px solid #e8e0c8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .board .emblem span {
+      font-family: "Yuji Boku", serif;
+      color: #f2e6c8;
+      font-size: 15px;
+    }
+
+    .board h1 {
+      font-family: "Yuji Boku", "Shippori Mincho", serif;
+      font-weight: 400;
+      font-size: 30px;
+      letter-spacing: 0.06em;
+      margin: 0;
+      color: #f2e8ce;
+      text-shadow:
+        1px 1px 0 #1a120c,
+        -1px 1px 1px rgba(0, 0, 0, 0.5),
+        0 2px 3px rgba(0, 0, 0, 0.6),
+        0 0 10px rgba(255, 240, 200, 0.15);
+    }
+
+    .board h1 .name-kana {
+      margin-right: 0.05em;
+    }
+
+    .board .legs {
+      position: absolute;
+      bottom: -14px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      padding: 0 30px;
+    }
+
+    .board .legs svg {
+      display: block;
+    }
+
+    /* 看板の下に配置する画像エリア（左右幅いっぱいで下部を丸める） */
+    .header-image-wrap {
+      width: 100vw;
+      height: 250px;
+      overflow: hidden;
+      z-index: 1;
+      /* 画像の下側を楕円形に丸める */
+      border-radius: 0 0 50% 50% / 0 0 100px 100px; 
+    }
+
+    .header-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 10% 30%;
+      display: block;
+    }
+
+    /* ---- wall + hanging tags ---- */
+    .wall {
+      position: relative;
+      min-height: 620px;
+      background-image:
+        linear-gradient(180deg, rgba(20, 12, 6, 0.5) 0%, rgba(20, 12, 6, 0.2) 40%, rgba(20, 12, 6, 0.08) 70%),
+        url("static/images/store.jpg");
+      background-size: cover;
+      background-position: center 40%;
+      padding: 26px 24px 8px;
+    }
+
+    .signboard {
+      display: flex;
+      justify-content: flex-start;
+      gap: 18px;
+      padding: 26px 20px 30px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      max-width: 640px;
+      margin: 0;
+    }
+
+    @media (min-width:700px) {
+      .signboard {
+        max-width: 100%;
+        justify-content: flex-start;
+        padding: 44px 32px 46px;
+        gap: 22px;
+      }
+
+      .tag {
+        width: 150px;
+        padding: 40px 10px 28px;
+      }
+
+      .tag-text {
+        font-size: 38px;
+      }
+
+      .tag .hole {
+        width: 13px;
+        height: 13px;
+        margin-bottom: 16px;
+      }
+
+      .wall {
+        min-height: 680px;
+      }
+    }
+
+    .tag {
+      position: relative;
+      display: block;
+      width: 60px;
+      background: linear-gradient(var(--tag-cream), #e0cd9a);
+      border: 1px solid var(--tag-shadow);
+      border-radius: 1px;
+      padding: 20px 5px 14px;
+      box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.4), inset 0 0 18px rgba(120, 90, 40, 0.18);
+      cursor: pointer;
+      transform-origin: top center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      animation: sway 4.5s ease-in-out infinite;
+      animation-delay: calc(var(--i) * -0.6s);
+      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .tag:hover {
+      transform: rotate(-2deg) translateY(-4px);
+      box-shadow: 3px 10px 16px rgba(0, 0, 0, 0.45);
+      animation-play-state: paused;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-1.2deg); }
+      50% { transform: rotate(1.2deg); }
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      20% { transform: rotate(-8deg); }
+      40% { transform: rotate(6deg); }
+      60% { transform: rotate(-4deg); }
+      80% { transform: rotate(2deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .tag.wiggle {
+      animation: wiggle 0.45s ease;
+    }
+
+    .tag-text {
+      position: relative;
+      z-index: 1;
+      font-family: "Yuji Boku", "Shippori Mincho", serif;
+      font-size: 16px;
+      font-weight: 400;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      display: block;
+      margin: 0 auto;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .tag.wood {
+      padding-top: 12px;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='220'><rect width='90' height='220' fill='%23eaa955'/><path d='M8 0 Q13 45 7 90 Q3 130 11 175 Q15 200 9 220' stroke='%23c9822f' stroke-width='2.5' fill='none' opacity='0.55'/><path d='M20 0 Q24 50 18 95 Q15 140 22 180 Q26 205 20 220' stroke='%23d8933a' stroke-width='2' fill='none' opacity='0.45'/><path d='M32 0 Q37 40 30 85 Q27 130 34 170 Q38 200 32 220' stroke='%23b8722a' stroke-width='2.5' fill='none' opacity='0.5'/><path d='M44 0 Q49 55 42 100 Q39 145 46 185 Q50 205 44 220' stroke='%23d8933a' stroke-width='2' fill='none' opacity='0.4'/><path d='M56 0 Q61 45 54 90 Q51 135 58 175 Q62 200 56 220' stroke='%23c9822f' stroke-width='2.5' fill='none' opacity='0.5'/><path d='M68 0 Q73 50 66 95 Q63 140 70 180 Q74 205 68 220' stroke='%23b8722a' stroke-width='2' fill='none' opacity='0.45'/><path d='M80 0 Q85 40 78 85 Q75 130 82 170 Q86 200 80 220' stroke='%23d8933a' stroke-width='2.5' fill='none' opacity='0.4'/><ellipse cx='36' cy='120' rx='4' ry='7' fill='%23a8641f' opacity='0.5'/></svg>");
+      background-size: 100% 100%;
+      border: 1px solid #b8722a;
+      border-radius: 5px;
+      box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .tag.wood::before,
+    .tag.wood::after,
+    .tag.wood .grain,
+    .tag.wood .stain {
+      display: none;
+    }
+
+    .tag.wood .hole {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      background: radial-gradient(circle at 35% 35%, #4a2f10, #1c1006 70%);
+      box-shadow: 0 1px 2px rgba(255, 255, 255, 0.3) inset, 0 2px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .tag.wood .tag-text {
+      color: #4a2f10;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    /* ---- campaign section styling (red & black theme) ---- */
+    .campaign {
+      max-width: 640px;
+      margin: 20px auto 40px;
+      padding: 0 20px;
+    }
+
+    @media (min-width: 700px) {
+      .campaign {
+        max-width: 100%;
+        padding: 0 32px;
+      }
+    }
+
+    .campaign-header {
+      border-left: 5px solid var(--seal-red);
+      padding-left: 10px;
+      margin-bottom: 14px;
+    }
+
+    .campaign-header h2 {
+      font-family: "Shippori Mincho", serif;
+      font-size: 18px;
+      color: var(--washi);
+      margin: 0;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .campaign-item {
+      display: block;
+      background: var(--washi);
+      border: 2px solid var(--seal-red);
+      border-radius: 4px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: var(--ink);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .campaign-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+    }
+
+    .campaign-item h3 {
+      font-family: "Shippori Mincho", serif;
+      font-size: 17px;
+      color: var(--seal-red);
+      margin: 0 0 6px 0;
+    }
+
+    .campaign-item p {
+      font-size: 13px;
+      margin: 0;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="page">
-<div class="valance" id="valance"></div>
+  <div class="page">
 
-<header>
-  <div class="board">
-    <div class="emblem"><span>誠</span></div>
-    <h1><span class="name-kana">みうらや</span><span class="name-kanji">誠麺</span></h1>
-    <div class="legs">
-      <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 0 L18 0 L10 16 Z" fill="#6b4226"/></svg>
-      <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 0 L18 0 L10 16 Z" fill="#6b4226"/></svg>
-      <svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 0 L18 0 L10 16 Z" fill="#6b4226"/></svg>
-    </div>
+    <header>
+      <!-- 一番上に配置する看板エリア -->
+      <div class="header-board-area">
+        <div class="board">
+          <div class="emblem"><span>誠</span></div>
+          <h1><span class="name-kana">みうらや</span><span class="name-kanji">誠麺</span></h1>
+          <div class="legs">
+            <svg width="20" height="16" viewBox="0 0 20 16">
+              <path d="M2 0 L18 0 L10 16 Z" fill="#6b4226" />
+            </svg>
+            <svg width="20" height="16" viewBox="0 0 20 16">
+              <path d="M2 0 L18 0 L10 16 Z" fill="#6b4226" />
+            </svg>
+            <svg width="20" height="16" viewBox="0 0 20 16">
+              <path d="M2 0 L18 0 L10 16 Z" fill="#6b4226" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- 看板の下に配置する画像エリア（横幅100vw） -->
+      <div class="header-image-wrap">
+        <img class="header-image" src="static/images/menu/66610_0.jpg" alt="header_image">
+      </div>
+    </header>
+
+    <main>
+      <div class="wall">
+        <nav class="signboard" id="signboard">
+          <a class="tag wood" href="detail.html" style="--i:1">
+            <div class="hole"></div>
+            <span class="tag-text">メニュー</span>
+          </a>
+          <a class="tag wood" href="shop.html" style="--i:2">
+            <div class="hole"></div>
+            <span class="tag-text">お店の情報</span>
+          </a>
+          <a class="tag wood" href="kodawari.html" style="--i:0">
+            <div class="hole"></div>
+            <span class="tag-text">こだわり</span>
+          </a>
+          <a class="tag wood" href="detail.html" style="--i:0">
+            <div class="hole"></div>
+            <span class="tag-text">クーポン</span>
+          </a>
+          <a class="tag wood" href="detail.html" style="--i:2">
+            <div class="hole"></div>
+            <span class="tag-text">会員ランク</span>
+          </a>
+          <a class="tag wood" href="access.html" style="--i:1">
+            <div class="hole"></div>
+            <span class="tag-text">アクセス</span>
+          </a>
+        </nav>
+
+        <section class="campaign">
+          <div class="campaign-header">
+            <h2>キャンペーン情報</h2>
+          </div>
+          <a class="campaign-item" href="#">
+            <h3>学生限定キャンペーン</h3>
+            <p>学生証提示でラーメン一杯無料！</p>
+          </a>
+        </section>
+
+      </div>
+    </main>
   </div>
-</header>
 
-<div class="wall">
-  <div class="beam"></div>
-  <nav class="signboard" id="signboard">
-    <a class="tag wood" href="detail.html" style="--i:1">
-      <div class="hole"></div>
-      <span class="tag-text">メニュー</span>
-    </a>
-    <a class="tag wood" href="shop.html" style="--i:2">
-      <div class="hole"></div>
-      <span class="tag-text">お店の情報</span>
-    </a>
-    <a class="tag wood" href="kodawari.html" style="--i:0">
-      <div class="hole"></div>
-      <span class="tag-text">こだわり</span>
-    </a>
-    <a class="tag wood" href="detail.html" style="--i:0">
-      <div class="hole"></div>
-      <span class="tag-text">クーポン</span>
-    </a>
-    <a class="tag wood" href="detail.html" style="--i:2">
-      <div class="hole"></div>
-<span class="tag-text">会員ランク</span>
-</a>
-<a class="tag wood" href="access.html" style="--i:1">
-      <div class="hole"></div>
-      <span class="tag-text">アクセス</span>
-    </a>
-  </nav>
+  <script>
+    const swirl = `<svg viewBox="0 0 20 20"><path d="M2 10a8 8 0 1 1 16 0" stroke="#fff" stroke-width="2" fill="none"/><circle cx="10" cy="10" r="2" fill="#fff"/></svg>`;
+    const valance = document.getElementById('valance');
+    if (valance) {
+      for (let i = 0; i < 14; i++) {
+        const t = document.createElement('div');
+        t.className = 'tile';
+        t.innerHTML = swirl;
+        valance.appendChild(t);
+      }
+    }
 
-</div>
-</div>
+    const tags = document.querySelectorAll('.tag');
 
-<script>
-  const swirl = `<svg viewBox="0 0 20 20"><path d="M2 10a8 8 0 1 1 16 0" stroke="#fff" stroke-width="2" fill="none"/><circle cx="10" cy="10" r="2" fill="#fff"/></svg>`;
-  const valance = document.getElementById('valance');
-  for(let i=0;i<14;i++){
-    const t = document.createElement('div');
-    t.className = 'tile';
-    t.innerHTML = swirl;
-    valance.appendChild(t);
-  }
+    function playWiggle(tag) {
+      tag.classList.remove('wiggle');
+      void tag.offsetWidth;
+      tag.classList.add('wiggle');
+    }
 
-  const tags = document.querySelectorAll('.tag');
-
-  function playWiggle(tag){
-    tag.classList.remove('wiggle');
-    void tag.offsetWidth;
-    tag.classList.add('wiggle');
-  }
-
-  tags.forEach(tag => {
-    tag.addEventListener('mouseenter', () => playWiggle(tag));
-    tag.addEventListener('animationend', (e) => {
-      if(e.animationName === 'wiggle') tag.classList.remove('wiggle');
+    tags.forEach(tag => {
+      tag.addEventListener('mouseenter', () => playWiggle(tag));
+      tag.addEventListener('animationend', (e) => {
+        if (e.animationName === 'wiggle') tag.classList.remove('wiggle');
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
