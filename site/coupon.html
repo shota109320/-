@@ -207,6 +207,29 @@
 	.actions { width: min(100%, 700px); margin: 0 auto; }
 	.home-button { width: min(100%, 260px); margin: 0 auto; }
 
+	.back-bar {
+		position: fixed;
+		right: 20px;
+		bottom: 20px;
+		z-index: 40;
+		padding: 0;
+		text-align: center;
+	}
+
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(180deg, #783e2e, #5d271f);
+		color: #fbecc8;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		border-radius: 999px;
+		padding: 14px 24px;
+		box-shadow: 0 10px 20px rgba(35, 18, 13, 0.18);
+		border: 2px solid rgba(255,255,255,0.18);
+	}
+
 	@media (max-width: 600px) {
 		main { padding: 24px 14px 42px; }
 		.guest-body { padding: 24px 16px 26px; }
@@ -218,6 +241,15 @@
 		.section-heading { padding-left: 12px; padding-right: 12px; }
 		.coupon-field { grid-template-columns: 5.3em minmax(0, 1fr); }
 		.home-button { width: 100%; }
+	}
+
+	@media (max-width: 768px) {
+		.back-bar { right: 12px; bottom: 12px; }
+		.back-link { padding: 12px 16px; font-size: 0.86rem; }
+	}
+
+	@media (min-width: 769px) {
+		.page { max-width: 850px; }
 	}
 </style>
 </head>
@@ -262,9 +294,11 @@
 
 			<div class="actions">
 				<a class="home-button" href="rank.html">会員ランクを確認する</a>
-				<a class="home-button" href="index.html">トップページへ戻る</a>
 			</div>
 		</main>
+	</div>
+	<div class="back-bar">
+		<a class="back-link" href="index.html">トップページへ戻る</a>
 	</div>
 
 		<script>

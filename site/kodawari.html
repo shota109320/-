@@ -204,6 +204,29 @@
 
 	.button.secondary { background: linear-gradient(180deg, #815633, #54331f); }
 
+	.back-bar {
+		position: fixed;
+		right: 20px;
+		bottom: 20px;
+		z-index: 40;
+		padding: 0;
+		text-align: center;
+	}
+
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(180deg, #783e2e, #5d271f);
+		color: #fbecc8;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		border-radius: 999px;
+		padding: 14px 24px;
+		box-shadow: 0 10px 20px rgba(35, 18, 13, 0.18);
+		border: 2px solid rgba(255,255,255,0.18);
+	}
+
 	@media (max-width: 700px) {
 		main { padding: 22px 14px 42px; }
 
@@ -218,6 +241,15 @@
 		.choices { grid-template-columns: 1fr; padding: 16px; }
 		.button { width: 100%; min-width: 0; }
 		.actions { flex-direction: column; }
+	}
+
+	@media (max-width: 768px) {
+		.back-bar { right: 12px; bottom: 12px; }
+		.back-link { padding: 12px 16px; font-size: 0.86rem; }
+	}
+
+	@media (min-width: 769px) {
+		.page { max-width: 850px; }
 	}
 </style>
 </head>
@@ -297,9 +329,11 @@
 
 			<div class="actions">
 				<a class="button" href="detail.html">麺を味わう / お品書きを見る</a>
-				<a class="button secondary" href="index.html">トップページへ戻る</a>
 			</div>
 		</main>
+	</div>
+	<div class="back-bar">
+		<a class="back-link" href="index.html">トップページへ戻る</a>
 	</div>
 </body>
 </html>
