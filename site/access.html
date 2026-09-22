@@ -255,6 +255,29 @@
     background: linear-gradient(180deg, #8a5d38, #694725);
   }
 
+  .back-bar {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 40;
+    padding: 0;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #783e2e, #5d271f);
+    color: #fbecc8;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    padding: 14px 24px;
+    box-shadow: 0 10px 20px rgba(35, 18, 13, 0.18);
+    border: 2px solid rgba(255,255,255,0.18);
+  }
+
   @media (max-width: 700px) {
     .info-grid {
       grid-template-columns: 1fr;
@@ -293,6 +316,15 @@
       width: 100%;
       flex-direction: column;
     }
+  }
+
+  @media (max-width: 768px) {
+    .back-bar { right: 12px; bottom: 12px; }
+    .back-link { padding: 12px 16px; font-size: 0.86rem; }
+  }
+
+  @media (min-width: 769px) {
+    .page { max-width: 740px; }
   }
 </style>
 </head>
@@ -359,10 +391,12 @@
       <div class="cta-wrap">
         <div class="cta-row">
           <a class="button" href="https://www.google.com/maps/search/?api=1&query=%E3%80%92397-0074+%E5%8D%83%E8%91%89%E7%9C%8C%E8%8C%82%E5%8E%9F%E5%B8%82%E5%B0%8F%E6%9E%971978-57" target="_blank" rel="noopener noreferrer">Googleマップで開く</a>
-          <a class="button secondary" href="index.html">トップページへ戻る</a>
         </div>
       </div>
     </main>
+  </div>
+  <div class="back-bar">
+    <a class="back-link" href="index.html">トップページへ戻る</a>
   </div>
 </body>
 </html>
