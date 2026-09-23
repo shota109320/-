@@ -37,20 +37,6 @@
     box-shadow:0 0 50px rgba(0,0,0,0.6);
   }
 
-  /* ---- top red valance pattern ---- */
-  .valance{
-    height:38px;
-    background:var(--seal-red);
-    display:flex;
-    border-bottom:3px solid #7a251c;
-  }
-  .valance .tile{
-    flex:1;
-    display:flex;align-items:center;justify-content:center;
-    border-right:1px solid rgba(255,255,255,0.25);
-  }
-  .valance .tile svg{ width:20px;height:20px; }
-
   header{
     padding:20px 20px 30px;
     display:flex;
@@ -374,8 +360,6 @@
 <body>
 
 <div class="page">
-<div class="valance" id="valance"></div>
-
 <header>
   <div class="board">
     <div class="emblem">
@@ -429,15 +413,6 @@
 </div>
 
 <script>
-  const swirl = `<svg viewBox="0 0 20 20"><path d="M2 10a8 8 0 1 1 16 0" stroke="#fff" stroke-width="2" fill="none"/><circle cx="10" cy="10" r="2" fill="#fff"/></svg>`;
-  const valance = document.getElementById('valance');
-  for(let i=0;i<14;i++){
-    const t = document.createElement('div');
-    t.className = 'tile';
-    t.innerHTML = swirl;
-    valance.appendChild(t);
-  }
-
   const tags = document.querySelectorAll('.tag');
 
   function playWiggle(tag){
