@@ -647,6 +647,61 @@
     border: 2px solid rgba(255,255,255,0.18);
   }
 
+  .category-fixed {
+    position: fixed;
+    right: 20px;
+    bottom: 78px;
+    z-index: 40;
+  }
+
+  .category-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 132px;
+    padding: 12px 20px;
+    color: #fbecc8;
+    background: linear-gradient(180deg, #783e2e, #5d271f);
+    border: 2px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    box-shadow: 0 10px 20px rgba(35, 18, 13, 0.18);
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+
+  .category-menu {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 8px);
+    display: grid;
+    width: min(260px, calc(100vw - 40px));
+    gap: 6px;
+    padding: 10px;
+    background: rgba(247, 240, 223, 0.98);
+    border: 2px solid var(--wood-mid);
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(35, 18, 13, 0.24);
+  }
+
+  .category-menu[hidden] {
+    display: none;
+  }
+
+  .category-menu a {
+    display: block;
+    padding: 9px 12px;
+    color: #fbecc8;
+    background: linear-gradient(180deg, #783e2e, #5d271f);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
   .lightbox {
     position: fixed;
     inset: 0;
@@ -877,6 +932,21 @@
       padding: 12px 16px;
       font-size: 0.86rem;
     }
+
+    .category-fixed {
+      right: 12px;
+      bottom: 71px;
+    }
+
+    .category-toggle {
+      min-width: 112px;
+      padding: 10px 16px;
+      font-size: 0.82rem;
+    }
+
+    .category-menu {
+      width: min(240px, calc(100vw - 24px));
+    }
   }
 
 
@@ -908,6 +978,21 @@
     max-width: 560px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .category-nav {
+    justify-content: center;
+    gap: 14px;
+    overflow-x: visible;
+  }
+
+  .category-nav a {
+    min-width: 110px;
+    text-align: center;
+  }
+
+  .category-nav a:nth-child(4) {
+    min-width: 220px;
   }
 }
 
@@ -997,23 +1082,6 @@
               <span class="carousel-dot is-active"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span><span class="carousel-dot"></span>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <h2>カテゴリ</h2>
-          <span class="tag">一覧</span>
-        </div>
-
-        <div class="category-nav-wrap">
-          <nav class="category-nav" aria-label="メニューカテゴリ">
-            <a href="#category-takokashi">竹岡式</a>
-            <a href="#category-shoyu">味噌・醤油</a>
-            <a href="#category-tonkotsu">その他</a>
-            <a href="#category-set">サイドメニュー・トッピング</a>
-            <a href="#category-seasonal">期間限定</a>
-          </nav>
         </div>
       </section>
 
@@ -1273,6 +1341,17 @@
         </div>
       </section>
 
+      <div class="category-fixed">
+        <nav class="category-menu" id="category-menu" aria-label="メニューカテゴリ" hidden>
+          <a href="#category-takokashi">竹岡式</a>
+          <a href="#category-shoyu">味噌・醤油</a>
+          <a href="#category-tonkotsu">その他</a>
+          <a href="#category-set">サイドメニュー・トッピング</a>
+          <a href="#category-seasonal">期間限定</a>
+        </nav>
+        <button class="category-toggle" id="category-toggle" type="button" aria-expanded="false" aria-controls="category-menu">カテゴリ</button>
+      </div>
+
       <div class="back-bar">
         <a class="back-link" href="index.html">トップページへ戻る</a>
       </div>
@@ -1357,6 +1436,32 @@
 
       previousButton?.addEventListener('click', () => move(-1));
       nextButton?.addEventListener('click', () => move(1));
+    });
+
+    const categoryToggle = document.getElementById('category-toggle');
+    const categoryMenu = document.getElementById('category-menu');
+
+    categoryToggle.addEventListener('click', () => {
+      const isOpen = categoryToggle.getAttribute('aria-expanded') === 'true';
+      categoryToggle.setAttribute('aria-expanded', String(!isOpen));
+      categoryMenu.hidden = isOpen;
+    });
+
+    categoryMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        categoryMenu.hidden = true;
+        categoryToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.category-fixed')) {
+        categoryMenu.hidden = true;
+        categoryToggle.setAttribute('aria-expanded', 'false');
+      }
     });
   </script>
 </body>
