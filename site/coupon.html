@@ -207,6 +207,115 @@
 	.actions { width: min(100%, 700px); margin: 0 auto; }
 	.home-button { width: min(100%, 260px); margin: 0 auto; }
 
+	.coupon-list {
+		width: min(100%, 700px);
+		margin: 0 auto;
+		display: grid;
+		gap: 20px;
+	}
+
+	.coupon-card {
+		padding: 22px 20px 20px;
+		background: linear-gradient(135deg, #fff4d5, #e8d7aa);
+		border: 3px dashed var(--red);
+		box-shadow: inset 0 0 0 2px rgba(255,255,255,0.55), 0 7px 14px var(--shadow);
+	}
+
+	.coupon-card.is-used {
+		background: linear-gradient(135deg, #e4dfd4, #cfc8bc);
+		border-color: #756b60;
+	}
+
+	.coupon-name {
+		margin: 0;
+		color: var(--red-dark);
+		font-family: "Shippori Mincho", serif;
+		font-size: 1.45rem;
+	}
+
+	.coupon-description {
+		margin: 12px 0 0;
+		color: var(--ink);
+		line-height: 1.8;
+	}
+
+	.coupon-use {
+		width: 100%;
+		min-height: 58px;
+		margin-top: 18px;
+		padding: 14px 20px;
+		color: #fff3d1;
+		background: linear-gradient(180deg, #ae3c31, #76231d);
+		border: 3px solid #4b2118;
+		box-shadow: 0 6px 12px var(--shadow);
+		font: inherit;
+		font-size: 1.05rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		cursor: pointer;
+	}
+
+	.coupon-used {
+		display: block;
+		margin-top: 18px;
+		padding: 12px;
+		color: #3f3933;
+		border: 3px solid #756b60;
+		font-size: 1.2rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-align: center;
+	}
+
+	.coupon-confirm[hidden] { display: none; }
+
+	.coupon-confirm {
+		position: fixed;
+		inset: 0;
+		z-index: 70;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+		background: rgba(22,13,8,0.62);
+	}
+
+	.coupon-confirm-box {
+		width: min(100%, 420px);
+		padding: 24px 20px 20px;
+		background: var(--paper);
+		border: 5px solid var(--wood-dark);
+		box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+		text-align: center;
+	}
+
+	.coupon-confirm-box p {
+		margin: 0;
+		color: var(--ink);
+		font-size: 1.1rem;
+		font-weight: 700;
+		line-height: 1.7;
+	}
+
+	.coupon-confirm-actions {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		margin-top: 20px;
+	}
+
+	.coupon-confirm-actions button {
+		min-height: 52px;
+		padding: 12px 10px;
+		border: 3px solid var(--wood-dark);
+		font: inherit;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	.coupon-cancel { color: var(--ink); background: #e8d6ac; }
+	.coupon-approve { color: #fff3d1; background: linear-gradient(180deg, #ae3c31, #76231d); }
+
 	.back-bar {
 		position: fixed;
 		right: 20px;
@@ -232,8 +341,8 @@
 
 	@media (max-width: 600px) {
 		main { padding: 24px 14px 42px; }
-		.guest-body { padding: 24px 16px 26px; }
-		.coupon-body { padding: 16px; }
+		.coupon-list { gap: 16px; }
+		.coupon-card { padding: 20px 16px 18px; }
 	}
 
 	@media (max-width: 390px) {
@@ -241,6 +350,7 @@
 		.section-heading { padding-left: 12px; padding-right: 12px; }
 		.coupon-field { grid-template-columns: 5.3em minmax(0, 1fr); }
 		.home-button { width: 100%; }
+		.coupon-confirm-actions { grid-template-columns: 1fr; }
 	}
 
 	@media (max-width: 768px) {
@@ -263,36 +373,30 @@
 		</header>
 
 		<main>
-			<section id="guest-content" class="guest-content" aria-labelledby="guest-heading">
-				<h2 class="section-heading" id="guest-heading">会員限定クーポン</h2>
-				<div class="guest-body">
-					<h3>クーポンを確認するには<br>ログインしてください。</h3>
-					<a class="entry-button" href="login.html">ログイン</a>
-					<p class="signup-prompt">まだ会員登録がお済みでない方</p>
-					<a class="entry-button secondary" href="signup.html">新規会員登録</a>
-				</div>
-			</section>
-
-			<div id="member-coupon-content" hidden>
-				<!-- TODO: Firebaseログイン後に表示 -->
 				<section class="member-section" aria-labelledby="coupon-heading">
-					<h2 class="section-heading" id="coupon-heading">あなたのクーポン</h2>
+					<h2 class="section-heading" id="coupon-heading">クーポン</h2>
 					<div class="coupon-body">
-						<!-- 仮表示：後でデータベースからクーポン情報を取得 -->
-						<article class="coupon-card">
-							<span class="coupon-label">クーポン名</span>
-							<strong class="coupon-value">会員限定クーポン</strong>
-							<dl class="coupon-details">
-								<div class="coupon-field"><dt>特典内容</dt><dd>特典内容は準備中です</dd></div>
-								<div class="coupon-field"><dt>対象ランク</dt><dd>確認中</dd></div>
-								<div class="coupon-field"><dt>有効期限</dt><dd>確認中</dd></div>
-							</dl>
-							<!-- TODO: 後でクーポン利用処理を実装 -->
-							<button class="use-button" type="button">利用する</button>
-						</article>
+						<div class="coupon-list">
+							<article class="coupon-card" data-coupon-id="discount-100">
+								<h3 class="coupon-name">100円引きクーポン</h3>
+								<p class="coupon-description">お会計時にご利用いただけます。<br>詳細は店頭でご確認ください。</p>
+								<button class="coupon-use" type="button">使用する</button>
+							</article>
+
+							<article class="coupon-card" data-coupon-id="topping-free">
+								<h3 class="coupon-name">トッピング無料クーポン</h3>
+								<p class="coupon-description">対象のトッピングにご利用いただけます。<br>詳細は店頭でご確認ください。</p>
+								<button class="coupon-use" type="button">使用する</button>
+							</article>
+
+							<article class="coupon-card" data-coupon-id="gyouza">
+								<h3 class="coupon-name">餃子クーポン</h3>
+								<p class="coupon-description">餃子にご利用いただけます。<br>詳細は店頭でご確認ください。</p>
+								<button class="coupon-use" type="button">使用する</button>
+							</article>
+						</div>
 					</div>
 				</section>
-			</div>
 
 			<div class="actions">
 				<a class="home-button" href="rank.html">会員ランクを確認する</a>
@@ -303,14 +407,71 @@
 		<a class="back-link" href="index.html">トップページへ戻る</a>
 	</div>
 
-		<script>
-			// DEMO ONLY: Firebase接続後にこのブロックを削除
-			const isDemoLoggedIn = sessionStorage.getItem('demoLoggedIn') === 'true';
-			const guestContent = document.getElementById('guest-content');
-			const memberCouponContent = document.getElementById('member-coupon-content');
+	<div class="coupon-confirm" id="coupon-confirm" hidden>
+		<div class="coupon-confirm-box" role="dialog" aria-modal="true" aria-labelledby="coupon-confirm-message">
+			<p id="coupon-confirm-message">このクーポンを使用しますか？</p>
+			<div class="coupon-confirm-actions">
+				<button class="coupon-cancel" id="coupon-cancel" type="button">キャンセル</button>
+				<button class="coupon-approve" id="coupon-approve" type="button">使用する</button>
+			</div>
+		</div>
+	</div>
 
-			guestContent.hidden = isDemoLoggedIn;
-			memberCouponContent.hidden = !isDemoLoggedIn;
+		<script>
+			// DEMO ONLY: Firebase接続後にlocalStorage処理を置き換える
+			const couponStorageKey = 'miuraya-used-coupons';
+			const couponConfirm = document.getElementById('coupon-confirm');
+			const couponCancel = document.getElementById('coupon-cancel');
+			const couponApprove = document.getElementById('coupon-approve');
+			let selectedCoupon = null;
+			let usedCoupons = new Set(JSON.parse(localStorage.getItem(couponStorageKey) || '[]'));
+
+			function updateCouponCard(card) {
+				const isUsed = usedCoupons.has(card.dataset.couponId);
+				card.classList.toggle('is-used', isUsed);
+				const useButton = card.querySelector('.coupon-use');
+				let usedLabel = card.querySelector('.coupon-used');
+				if (isUsed) {
+					useButton.hidden = true;
+					if (!usedLabel) {
+						usedLabel = document.createElement('strong');
+						usedLabel.className = 'coupon-used';
+						usedLabel.textContent = '使用済み';
+						card.appendChild(usedLabel);
+					}
+				} else {
+					useButton.hidden = false;
+					usedLabel?.remove();
+				}
+			}
+
+			document.querySelectorAll('.coupon-card').forEach(updateCouponCard);
+
+			document.querySelectorAll('.coupon-use').forEach(button => {
+				button.addEventListener('click', () => {
+					selectedCoupon = button.closest('.coupon-card');
+					couponConfirm.hidden = false;
+					couponCancel.focus();
+				});
+			});
+
+			couponCancel.addEventListener('click', () => {
+				couponConfirm.hidden = true;
+				selectedCoupon?.querySelector('.coupon-use').focus();
+			});
+
+			couponApprove.addEventListener('click', () => {
+				if (!selectedCoupon) return;
+				usedCoupons.add(selectedCoupon.dataset.couponId);
+				localStorage.setItem(couponStorageKey, JSON.stringify([...usedCoupons]));
+				updateCouponCard(selectedCoupon);
+				couponConfirm.hidden = true;
+				selectedCoupon = null;
+			});
+
+			couponConfirm.addEventListener('click', event => {
+				if (event.target === couponConfirm) couponCancel.click();
+			});
 		</script>
 		<script src="static/text-size.js"></script>
 </body>
