@@ -395,6 +395,11 @@
 </head>
 <body>
 	<button class="text-size-toggle" type="button" aria-pressed="false">文字を大きく</button>
+	<script>
+		if (sessionStorage.getItem('demoLoggedIn') !== 'true') {
+			window.location.replace('login.html?redirect=rank.html');
+		}
+	</script>
 	<div class="page">
 		<header class="topbar">
 			<h1 class="brand">みうらや誠麺</h1>
