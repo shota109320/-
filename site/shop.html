@@ -8,9 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Yuji+Boku&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --wood-dark: #332116;
-    --wood-mid: #624027;
     --wood-light: #9b693f;
     --paper: #f7f0df;
     --paper-deep: #e8d6ac;
@@ -244,8 +241,10 @@
     .page { max-width: 740px; }
   }
 </style>
+<link rel="stylesheet" href="static/text-size.css">
 </head>
 <body>
+  <button class="text-size-toggle" type="button" aria-pressed="false">文字を大きく</button>
   <div class="page">
     <header class="topbar">
       <h1 class="brand">みうらや誠麺</h1>
@@ -254,6 +253,7 @@
 
     <main>
       <section class="section">
+  <script src="static/text-size.js"></script>
         <h2 class="section-heading">店舗写真</h2>
         <div class="store-photo-wrap">
           <img class="store-photo" src="static/images/store.jpg" alt="みうらや誠麺の店舗写真">

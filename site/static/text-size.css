@@ -1,0 +1,33 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+.text-size-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 60;
+  min-height: 42px;
+  padding: 9px 14px;
+  color: #fbecc8;
+  background: linear-gradient(180deg, #783e2e, #5d271f);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(35,18,13,0.22);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+@media (max-width:768px) {
+  .text-size-toggle {
+    top: 8px;
+    right: 8px;
+    min-height: 40px;
+    padding: 8px 11px;
+    font-size: 0.76rem;
+  }
+}

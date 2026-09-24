@@ -8,18 +8,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500&family=Dela+Gothic+One&family=Yuji+Syuku&family=Yuji+Boku&family=Klee+One:wght@600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --wood-dark:#3b2415;
-    --wood-mid:#6b4226;
-    --counter:#a9702f;
-    --counter-dark:#8a5820;
-    --tag-cream:#efe3c4;
-    --tag-shadow:#c9b98c;
-    --seal-red:#a63a2e;
-    --ink:#2b2018;
-    --washi:#f7f1e2;
-    --wall:#fbf7ee;
-  }
+:root{
+  --wood-dark:#3b2415;
+  --wood-mid:#6b4226;
+  --counter:#a9702f;
+  --counter-dark:#8a5820;
+  --tag-cream:#efe3c4;
+  --tag-shadow:#c9b98c;
+  --seal-red:#a63a2e;
+  --ink:#2b2018;
+  --washi:#f7f1e2;
+  --wall:#fbf7ee;
+}
   *{box-sizing:border-box;}
   body{
     margin:0;
@@ -386,8 +386,10 @@
   }
 
 </style>
+<link rel="stylesheet" href="static/text-size.css">
 </head>
 <body>
+<button class="text-size-toggle" type="button" aria-pressed="false">文字を大きく</button>
 
 <div class="page">
 <header>
@@ -513,6 +515,7 @@
   renderNoticeSlides();
   setInterval(nextNotice, 5000);
 </script>
+<script src="static/text-size.js"></script>
 
 </body>
 </html>
