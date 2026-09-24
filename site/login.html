@@ -369,7 +369,9 @@
 			}
 
 			sessionStorage.setItem('demoLoggedIn', 'true');
-			window.location.href = 'rank.html';
+			const redirect = new URLSearchParams(window.location.search).get('redirect');
+			const destination = redirect === 'coupon.html' || redirect === 'rank.html' ? redirect : 'rank.html';
+			window.location.href = destination;
 		});
 	</script>
   <script src="static/text-size.js"></script>
