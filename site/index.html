@@ -249,6 +249,42 @@
   }
 
   @media (max-width:768px){
+    .signboard-wrap{
+      position:relative;
+    }
+
+    .signboard-wrap::before{
+      content:"";
+      position:absolute;
+      top:0;
+      right:0;
+      bottom:36px;
+      width:42px;
+      z-index:2;
+      background:linear-gradient(90deg, rgba(234,169,85,0), rgba(74,47,16,0.48));
+      pointer-events:none;
+    }
+
+    .signboard-wrap::after{
+      content:"›";
+      position:absolute;
+      top:50%;
+      right:9px;
+      z-index:3;
+      color:rgba(255,243,209,0.9);
+      font-size:1.5rem;
+      font-weight:700;
+      line-height:1;
+      text-shadow:0 1px 3px rgba(35,18,13,0.55);
+      pointer-events:none;
+      transform:translateY(-50%);
+    }
+
+    .signboard-wrap.is-end::before,
+    .signboard-wrap.is-end::after{
+      display:none;
+    }
+
     .signboard{
       gap:12px;
       overflow-x:auto;
@@ -408,6 +444,7 @@
 
 <div class="wall">
   <div class="beam"></div>
+  <div class="signboard-wrap">
   <nav class="signboard" id="signboard">
     <a class="tag wood" href="detail.html" style="--i:1">
       <div class="hole"></div>
@@ -434,6 +471,7 @@
       <span class="tag-text">アクセス</span>
     </a>
   </nav>
+  </div>
 
   <section class="notice-board" aria-label="お知らせ">
     <div class="notice-header">お知らせ</div>
@@ -514,6 +552,19 @@
 
   renderNoticeSlides();
   setInterval(nextNotice, 5000);
+
+  const signboard = document.getElementById('signboard');
+  const signboardWrap = document.querySelector('.signboard-wrap');
+
+  function updateSignboardHint() {
+    signboardWrap.classList.toggle('is-end', signboard.scrollLeft + signboard.clientWidth >= signboard.scrollWidth - 2);
+  }
+
+  signboard.addEventListener('scroll', updateSignboardHint, { passive: true });
+  window.addEventListener('resize', updateSignboardHint);
+  document.querySelector('.text-size-toggle')?.addEventListener('click', () => setTimeout(updateSignboardHint, 0));
+  setTimeout(updateSignboardHint, 0);
+  updateSignboardHint();
 </script>
 <script src="static/text-size.js"></script>
 
