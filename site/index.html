@@ -248,6 +248,10 @@
     text-shadow:0 1px 0 rgba(255,255,255,0.25);
   }
 
+  .signboard-swipe-hint{
+    display:none;
+  }
+
   @media (max-width:768px){
     .signboard-wrap{
       position:relative;
@@ -259,9 +263,9 @@
       top:0;
       right:0;
       bottom:36px;
-      width:42px;
+      width:65px;
       z-index:2;
-      background:linear-gradient(90deg, rgba(234,169,85,0), rgba(74,47,16,0.48));
+      background:linear-gradient(90deg, rgba(28,17,9,0), rgba(28,17,9,0.8));
       pointer-events:none;
     }
 
@@ -272,7 +276,7 @@
       right:9px;
       z-index:3;
       color:rgba(255,243,209,0.9);
-      font-size:1.5rem;
+      font-size:32px;
       font-weight:700;
       line-height:1;
       text-shadow:0 1px 3px rgba(35,18,13,0.55);
@@ -280,8 +284,30 @@
       transform:translateY(-50%);
     }
 
+    .signboard-swipe-hint{
+      display:block;
+      position:absolute;
+      right:7px;
+      bottom:8px;
+      z-index:3;
+      color:#fff3d1;
+      font-size:0.72rem;
+      font-weight:700;
+      letter-spacing:0.04em;
+      line-height:1;
+      text-shadow:0 1px 3px rgba(35,18,13,0.75);
+      white-space:nowrap;
+      pointer-events:none;
+    }
+
+    .signboard-swipe-hint strong{
+      font-size:1rem;
+      margin-left:2px;
+    }
+
     .signboard-wrap.is-end::before,
-    .signboard-wrap.is-end::after{
+    .signboard-wrap.is-end::after,
+    .signboard-wrap.is-end .signboard-swipe-hint{
       display:none;
     }
 
@@ -471,6 +497,7 @@
       <span class="tag-text">アクセス</span>
     </a>
   </nav>
+  <span class="signboard-swipe-hint">横にスワイプ <strong>›</strong></span>
   </div>
 
   <section class="notice-board" aria-label="お知らせ">
